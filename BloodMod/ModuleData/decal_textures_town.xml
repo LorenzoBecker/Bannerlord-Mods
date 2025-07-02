@@ -1,0 +1,254 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<base
+	type="decal_texture">
+	<decal_textures>
+		<decal_texture
+			name="cursor"
+			atlas_pos="0.988159, 0.455078, 0.003906, 0.007812"
+			is_dynamic="false" />
+		<decal_texture
+			name="plain_white"
+			atlas_pos="0.988159, 0.427734, 0.007812, 0.015625"
+			is_dynamic="false" />
+		<decal_texture
+			name="ashes_a_d"
+			atlas_pos="0.378052, 0.011719, 0.062500, 0.125000"
+			is_dynamic="false" />
+		<decal_texture
+			name="blood_decal_2"
+			atlas_pos="0.646362, 0.427734, 0.062500, 0.125000"
+			is_dynamic="true" />
+		<decal_texture
+			name="dirt_leaking_a_d"
+			atlas_pos="0.303833, 0.011719, 0.062500, 0.125000"
+			is_dynamic="false" />
+		<decal_texture
+			name="dirt_leaking_a_s"
+			atlas_pos="0.002930, 0.302734, 0.062500, 0.125000"
+			is_dynamic="false" />
+		<decal_texture
+			name="footprint_snow_n"
+			atlas_pos="0.751953, 0.564453, 0.031250, 0.062500"
+			is_dynamic="false" />
+		<decal_texture
+			name="ground_grass_b_s"
+			atlas_pos="0.650024, 0.291016, 0.062500, 0.125000"
+			is_dynamic="false" />
+		<decal_texture
+			name="ground_straw_b_d"
+			atlas_pos="0.600708, 0.011719, 0.062500, 0.125000"
+			is_dynamic="false" />
+		<decal_texture
+			name="ground_straw_b_n"
+			atlas_pos="0.444946, 0.291016, 0.062500, 0.125000"
+			is_dynamic="false" />
+		<decal_texture
+			name="map_track_arrow"
+			atlas_pos="0.924561, 0.154297, 0.062500, 0.125000"
+			is_dynamic="false" />
+		<decal_texture
+			name="mud_a_d"
+			atlas_pos="0.823364, 0.011719, 0.062500, 0.125000"
+			is_dynamic="false" />
+		<decal_texture
+			name="physically_based_iron_s"
+			atlas_pos="0.787842, 0.154297, 0.062500, 0.125000"
+			is_dynamic="false" />
+		<decal_texture
+			name="puddles_d"
+			atlas_pos="0.005859, 0.160156, 0.062500, 0.125000"
+			is_dynamic="false" />
+		<decal_texture
+			name="puddles_n"
+			atlas_pos="0.372925, 0.300049, 0.062500, 0.125000"
+			is_dynamic="false" />
+		<decal_texture
+			name="puddles_s"
+			atlas_pos="0.071289, 0.439453, 0.062500, 0.125000"
+			is_dynamic="false" />
+		<decal_texture
+			name="road_water_leaking_a_d"
+			atlas_pos="0.618164, 0.570312, 0.125000, 0.062500"
+			is_dynamic="false" />
+		<decal_texture
+			name="type_a_decal"
+			atlas_pos="0.509644, 0.427734, 0.062500, 0.125000"
+			is_dynamic="false" />
+		<decal_texture
+			name="type_b_decal"
+			atlas_pos="0.208008, 0.302734, 0.062500, 0.125000"
+			is_dynamic="false" />
+		<decal_texture
+			name="type_c_decal"
+			atlas_pos="0.139648, 0.302734, 0.062500, 0.125000"
+			is_dynamic="false" />
+		<decal_texture
+			name="wall_damaged_decal_a_d"
+			atlas_pos="0.080078, 0.160156, 0.062500, 0.125000"
+			is_dynamic="false" />
+		<decal_texture
+			name="wall_damaged_decal_a_n"
+			atlas_pos="0.786743, 0.291016, 0.062500, 0.125000"
+			is_dynamic="false" />
+		<decal_texture
+			name="wall_damaged_decal_a_s"
+			atlas_pos="0.651123, 0.154297, 0.062500, 0.125000"
+			is_dynamic="false" />
+		<decal_texture
+			name="snow_a_s"
+			atlas_pos="0.719482, 0.154297, 0.062500, 0.125000"
+			is_dynamic="true" />
+		<decal_texture
+			name="blood_terrain_decal_0_d"
+			atlas_pos="0.080444, 0.011719, 0.109091, 0.218750"
+			is_dynamic="true" />
+		<decal_texture
+			name="blood_terrain_decal_0_n"
+			atlas_pos="0.856201, 0.154297, 0.125732, 0.250000"
+			is_dynamic="true" />
+		<decal_texture
+			name="blood_terrain_decal_0_s"
+			atlas_pos="0.582397, 0.154297, 0.062866, 0.125000"
+			is_dynamic="true" />
+		<decal_texture
+			name="blood_terrain_decal_10_d"
+			atlas_pos="0.674927, 0.011719, 0.094349, 0.187500"
+			is_dynamic="true" />
+		<decal_texture
+			name="blood_terrain_decal_10_n"
+			atlas_pos="0.513306, 0.291016, 0.062500, 0.125000"
+			is_dynamic="true" />
+		<decal_texture
+			name="blood_terrain_decal_10_s"
+			atlas_pos="0.581665, 0.291016, 0.125732, 0.250000"
+			is_dynamic="true" />
+		<decal_texture
+			name="blood_terrain_decal_11_d"
+			atlas_pos="0.526489, 0.011719, 0.094349, 0.187500"
+			is_dynamic="true" />
+		<decal_texture
+			name="blood_terrain_decal_11_n"
+			atlas_pos="0.208008, 0.439453, 0.109091, 0.218750"
+			is_dynamic="true" />
+		<decal_texture
+			name="blood_terrain_decal_11_s"
+			atlas_pos="0.919800, 0.427734, 0.062500, 0.125000"
+			is_dynamic="true" />
+		<decal_texture
+			name="blood_terrain_decal_1_d"
+			atlas_pos="0.005859, 0.011719, 0.125732, 0.250000"
+			is_dynamic="true" />
+		<decal_texture
+			name="blood_terrain_decal_1_n"
+			atlas_pos="0.923462, 0.291016, 0.094349, 0.187500"
+			is_dynamic="true" />
+		<decal_texture
+			name="blood_terrain_decal_1_s"
+			atlas_pos="0.513672, 0.154297, 0.109091, 0.218750"
+			is_dynamic="true" />
+		<decal_texture
+			name="blood_terrain_decal_2_d"
+			atlas_pos="0.155029, 0.011719, 0.062866, 0.125000"
+			is_dynamic="true" />
+		<decal_texture
+			name="blood_terrain_decal_2_n"
+			atlas_pos="0.071289, 0.302734, 0.125732, 0.250000"
+			is_dynamic="true" />
+		<decal_texture
+			name="blood_terrain_decal_2_s"
+			atlas_pos="0.444946, 0.154297, 0.094349, 0.187500"
+			is_dynamic="true" />
+		<decal_texture
+			name="blood_terrain_decal_3_d"
+			atlas_pos="0.302002, 0.160156, 0.109091, 0.218750"
+			is_dynamic="true" />
+		<decal_texture
+			name="blood_terrain_decal_3_n"
+			atlas_pos="0.276367, 0.302734, 0.062500, 0.125000"
+			is_dynamic="true" />
+		<decal_texture
+			name="blood_terrain_decal_3_s"
+			atlas_pos="0.276367, 0.439453, 0.125732, 0.250000"
+			is_dynamic="true" />
+		<decal_texture
+			name="blood_terrain_decal_4_d"
+			atlas_pos="0.228149, 0.160156, 0.094349, 0.187500"
+			is_dynamic="true" />
+		<decal_texture
+			name="blood_terrain_decal_4_n"
+			atlas_pos="0.578003, 0.427734, 0.109091, 0.218750"
+			is_dynamic="true" />
+		<decal_texture
+			name="blood_terrain_decal_4_s"
+			atlas_pos="0.413086, 0.564453, 0.062134, 0.125000"
+			is_dynamic="true" />
+		<decal_texture
+			name="blood_terrain_decal_5_d"
+			atlas_pos="0.154297, 0.160156, 0.125732, 0.250000"
+			is_dynamic="true" />
+		<decal_texture
+			name="blood_terrain_decal_5_n"
+			atlas_pos="0.783081, 0.427734, 0.094349, 0.187500"
+			is_dynamic="true" />
+		<decal_texture
+			name="blood_terrain_decal_5_s"
+			atlas_pos="0.481079, 0.564453, 0.109091, 0.218750"
+			is_dynamic="true" />
+		<decal_texture
+			name="blood_terrain_decal_6_d"
+			atlas_pos="0.452271, 0.011719, 0.062500, 0.125000"
+			is_dynamic="true" />
+		<decal_texture
+			name="blood_terrain_decal_6_n"
+			atlas_pos="0.344727, 0.436768, 0.125732, 0.250000"
+			is_dynamic="true" />
+		<decal_texture
+			name="blood_terrain_decal_6_s"
+			atlas_pos="0.002930, 0.439453, 0.094349, 0.187500"
+			is_dynamic="true" />
+		<decal_texture
+			name="blood_terrain_decal_7_d"
+			atlas_pos="0.749146, 0.011719, 0.109091, 0.218750"
+			is_dynamic="true" />
+		<decal_texture
+			name="blood_terrain_decal_7_n"
+			atlas_pos="0.139648, 0.439453, 0.062500, 0.125000"
+			is_dynamic="true" />
+		<decal_texture
+			name="blood_terrain_decal_7_s"
+			atlas_pos="0.851440, 0.427734, 0.125732, 0.250000"
+			is_dynamic="true" />
+		<decal_texture
+			name="blood_terrain_decal_8_d"
+			atlas_pos="0.229614, 0.011719, 0.094349, 0.187500"
+			is_dynamic="true" />
+		<decal_texture
+			name="blood_terrain_decal_8_n"
+			atlas_pos="0.441284, 0.427734, 0.109091, 0.218750"
+			is_dynamic="true" />
+		<decal_texture
+			name="blood_terrain_decal_8_s"
+			atlas_pos="0.718384, 0.291016, 0.062500, 0.125000"
+			is_dynamic="true" />
+		<decal_texture
+			name="blood_terrain_decal_9_d"
+			atlas_pos="0.897583, 0.011719, 0.125732, 0.250000"
+			is_dynamic="true" />
+		<decal_texture
+			name="blood_terrain_decal_9_n"
+			atlas_pos="0.714722, 0.427734, 0.094349, 0.187500"
+			is_dynamic="true" />
+		<decal_texture
+			name="blood_terrain_decal_9_s"
+			atlas_pos="0.855103, 0.291016, 0.109091, 0.218750"
+			is_dynamic="true" />
+		<decal_texture
+			name="decal_snow_footprint_d"
+			atlas_pos="0.375854, 0.160156, 0.060303, 0.122314"
+			is_dynamic="true" />
+		<decal_texture
+			name="decal_snow_footprint_n"
+			atlas_pos="0.549072, 0.564453, 0.060303, 0.122314"
+			is_dynamic="true" />
+	</decal_textures>
+</base>

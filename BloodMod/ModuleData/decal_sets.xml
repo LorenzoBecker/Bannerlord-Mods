@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<base xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	type="decal_set">
+	<decal_sets>
+		<decal_set
+			name="editor_set"
+			total_decal_life_base="999999999999.000000"
+			visible_decal_life_base="999999999999.000000"
+			maximum_decal_count_per_grid="0"
+			min_visibility_area="0.0, 0.0"
+			adaptive_time_limit="false"
+			fade_out_delete="false" />
+		<decal_set
+			name="default_set"
+			total_decal_life_base="9000.000000"
+			visible_decal_life_base="9000.000000"
+			maximum_decal_count_per_grid="0"
+			min_visibility_area="0.0, 0.0"
+			adaptive_time_limit="true"
+			fade_out_delete="false" />
+		<decal_set
+			name="blood_set"
+			total_decal_life_base="99999999999.000000"
+			visible_decal_life_base="99999999999.000000"
+			maximum_decal_count_per_grid="4"
+			min_visibility_area="0.0, 0.0"
+			adaptive_time_limit="false"
+			fade_out_delete="false" />
+		<decal_set
+			name="steps_set"
+			total_decal_life_base="40.000000"
+			visible_decal_life_base="10.000000"
+			maximum_decal_count_per_grid="4"
+			min_visibility_area="0.0, 0.0"
+			adaptive_time_limit="true"
+			fade_out_delete="true" />
+	</decal_sets>
+</base>

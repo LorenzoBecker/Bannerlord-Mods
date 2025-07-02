@@ -1,0 +1,542 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<base
+	type="decal_texture">
+	<decal_textures>
+		<decal_texture
+			name="black"
+			atlas_pos="0.990295, 0.624023, 0.000000, 0.001953"
+			is_dynamic="false" />
+		<decal_texture
+			name="blob_shadow"
+			atlas_pos="0.516724, 0.793945, 0.015625, 0.031250"
+			is_dynamic="false" />
+		<decal_texture
+			name="cursor"
+			atlas_pos="0.990295, 0.614258, 0.001953, 0.003906"
+			is_dynamic="false" />
+		<decal_texture
+			name="default_editor_texture_d"
+			atlas_pos="0.960938, 0.501953, 0.031250, 0.062500"
+			is_dynamic="false" />
+		<decal_texture
+			name="default_editor_texture_n"
+			atlas_pos="0.761658, 0.749023, 0.031250, 0.062500"
+			is_dynamic="false" />
+		<decal_texture
+			name="default_specular"
+			atlas_pos="0.994202, 0.624023, 0.000000, 0.000000"
+			is_dynamic="false" />
+		<decal_texture
+			name="plain_white"
+			atlas_pos="0.990295, 0.600586, 0.003906, 0.007812"
+			is_dynamic="false" />
+		<decal_texture
+			name="snow_a_s"
+			atlas_pos="0.317322, 0.708008, 0.031250, 0.062500"
+			is_dynamic="false" />
+		<decal_texture
+			name="ashes_a_d"
+			atlas_pos="0.603516, 0.511719, 0.031250, 0.062500"
+			is_dynamic="false" />
+		<decal_texture
+			name="ashes_a_n"
+			atlas_pos="0.624939, 0.725586, 0.031250, 0.062500"
+			is_dynamic="false" />
+		<decal_texture
+			name="blood_debug_d"
+			atlas_pos="0.751953, 0.541016, 0.031250, 0.062500"
+			is_dynamic="true" />
+		<decal_texture
+			name="blood_debug_n"
+			atlas_pos="0.475159, 0.657227, 0.031250, 0.062500"
+			is_dynamic="true" />
+		<decal_texture
+			name="blood_debug_s"
+			atlas_pos="0.440979, 0.657227, 0.031250, 0.062500"
+			is_dynamic="true" />
+		<decal_texture
+			name="blood_decal_2"
+			atlas_pos="0.104004, 0.730103, 0.031250, 0.062500"
+			is_dynamic="true" />
+		<decal_texture
+			name="blood_decal_2_nm"
+			atlas_pos="0.659119, 0.725586, 0.062500, 0.125000"
+			is_dynamic="true" />
+		<decal_texture
+			name="blood_terrain_decal_0_d"
+			atlas_pos="0.960938, 0.279297, 0.046875, 0.093750"
+			is_dynamic="true" />
+		<decal_texture
+			name="blood_terrain_decal_0_n"
+			atlas_pos="0.748596, 0.680664, 0.056250, 0.112500"
+			is_dynamic="true" />
+		<decal_texture
+			name="blood_terrain_decal_0_s"
+			atlas_pos="0.784851, 0.612305, 0.031433, 0.062500"
+			is_dynamic="true" />
+		<decal_texture
+			name="blood_terrain_decal_10_d"
+			atlas_pos="0.151367, 0.517578, 0.062500, 0.125000"
+			is_dynamic="true" />
+		<decal_texture
+			name="blood_terrain_decal_10_n"
+			atlas_pos="0.522400, 0.725586, 0.046875, 0.093750"
+			is_dynamic="true" />
+		<decal_texture
+			name="blood_terrain_decal_10_s"
+			atlas_pos="0.556580, 0.725586, 0.056250, 0.112500"
+			is_dynamic="true" />
+		<decal_texture
+			name="blood_terrain_decal_11_d"
+			atlas_pos="0.566406, 0.585938, 0.031250, 0.062500"
+			is_dynamic="true" />
+		<decal_texture
+			name="blood_terrain_decal_11_n"
+			atlas_pos="0.853577, 0.612305, 0.062500, 0.125000"
+			is_dynamic="true" />
+		<decal_texture
+			name="blood_terrain_decal_11_s"
+			atlas_pos="0.887756, 0.612305, 0.046875, 0.093750"
+			is_dynamic="true" />
+		<decal_texture
+			name="blood_terrain_decal_1_d"
+			atlas_pos="0.960938, 0.427734, 0.056250, 0.112500"
+			is_dynamic="true" />
+		<decal_texture
+			name="blood_terrain_decal_1_n"
+			atlas_pos="0.351501, 0.708008, 0.031250, 0.062500"
+			is_dynamic="true" />
+		<decal_texture
+			name="blood_terrain_decal_1_s"
+			atlas_pos="0.750488, 0.612305, 0.062500, 0.125000"
+			is_dynamic="true" />
+		<decal_texture
+			name="blood_terrain_decal_2_d"
+			atlas_pos="0.960938, 0.353516, 0.046875, 0.093750"
+			is_dynamic="true" />
+		<decal_texture
+			name="blood_terrain_decal_2_n"
+			atlas_pos="0.611877, 0.657227, 0.056250, 0.112500"
+			is_dynamic="true" />
+		<decal_texture
+			name="blood_terrain_decal_2_s"
+			atlas_pos="0.819214, 0.612305, 0.031433, 0.062500"
+			is_dynamic="true" />
+		<decal_texture
+			name="blood_terrain_decal_3_d"
+			atlas_pos="0.039856, 0.591797, 0.062500, 0.125000"
+			is_dynamic="true" />
+		<decal_texture
+			name="blood_terrain_decal_3_n"
+			atlas_pos="0.180603, 0.708008, 0.046875, 0.093750"
+			is_dynamic="true" />
+		<decal_texture
+			name="blood_terrain_decal_3_s"
+			atlas_pos="0.377258, 0.776367, 0.056250, 0.112500"
+			is_dynamic="true" />
+		<decal_texture
+			name="blood_terrain_decal_4_d"
+			atlas_pos="0.076782, 0.591797, 0.031067, 0.062500"
+			is_dynamic="true" />
+		<decal_texture
+			name="blood_terrain_decal_4_n"
+			atlas_pos="0.419861, 0.725586, 0.062500, 0.125000"
+			is_dynamic="true" />
+		<decal_texture
+			name="blood_terrain_decal_4_s"
+			atlas_pos="0.343262, 0.776367, 0.046875, 0.093750"
+			is_dynamic="true" />
+		<decal_texture
+			name="blood_terrain_decal_5_d"
+			atlas_pos="0.002930, 0.591797, 0.056250, 0.112500"
+			is_dynamic="true" />
+		<decal_texture
+			name="blood_terrain_decal_5_n"
+			atlas_pos="0.069824, 0.731445, 0.031250, 0.062500"
+			is_dynamic="true" />
+		<decal_texture
+			name="blood_terrain_decal_5_s"
+			atlas_pos="0.898376, 0.784180, 0.046875, 0.093750"
+			is_dynamic="true" />
+		<decal_texture
+			name="blood_terrain_decal_6_d"
+			atlas_pos="0.492188, 0.585938, 0.056250, 0.112500"
+			is_dynamic="true" />
+		<decal_texture
+			name="blood_terrain_decal_6_n"
+			atlas_pos="0.406799, 0.639648, 0.062500, 0.125000"
+			is_dynamic="true" />
+		<decal_texture
+			name="blood_terrain_decal_6_s"
+			atlas_pos="0.921936, 0.647461, 0.031250, 0.062500"
+			is_dynamic="true" />
+		<decal_texture
+			name="blood_terrain_decal_7_d"
+			atlas_pos="0.640625, 0.511719, 0.062500, 0.125000"
+			is_dynamic="true" />
+		<decal_texture
+			name="blood_terrain_decal_7_n"
+			atlas_pos="0.864197, 0.749023, 0.046875, 0.093750"
+			is_dynamic="true" />
+		<decal_texture
+			name="blood_terrain_decal_7_s"
+			atlas_pos="0.138184, 0.776367, 0.056250, 0.112500"
+			is_dynamic="true" />
+		<decal_texture
+			name="blood_terrain_decal_8_d"
+			atlas_pos="0.529297, 0.585938, 0.031250, 0.062500"
+			is_dynamic="true" />
+		<decal_texture
+			name="blood_terrain_decal_8_n"
+			atlas_pos="0.240723, 0.776367, 0.062500, 0.125000"
+			is_dynamic="true" />
+		<decal_texture
+			name="blood_terrain_decal_8_s"
+			atlas_pos="0.274902, 0.776367, 0.046875, 0.093750"
+			is_dynamic="true" />
+		<decal_texture
+			name="blood_terrain_decal_9_d"
+			atlas_pos="0.714844, 0.585938, 0.056250, 0.112500"
+			is_dynamic="true" />
+		<decal_texture
+			name="blood_terrain_decal_9_n"
+			atlas_pos="0.035645, 0.731445, 0.031250, 0.062500"
+			is_dynamic="true" />
+		<decal_texture
+			name="blood_terrain_decal_9_s"
+			atlas_pos="0.146423, 0.708008, 0.062500, 0.125000"
+			is_dynamic="true" />
+		<decal_texture
+			name="blood_test"
+			atlas_pos="0.953674, 0.715820, 0.046875, 0.093750"
+			is_dynamic="true" />
+		<decal_texture
+			name="blood_test_n"
+			atlas_pos="0.248962, 0.708008, 0.056250, 0.112500"
+			is_dynamic="true" />
+		<decal_texture
+			name="blood_test_s"
+			atlas_pos="0.782776, 0.680664, 0.031250, 0.062500"
+			is_dynamic="true" />
+		<decal_texture
+			name="color_picker"
+			atlas_pos="0.995178, 0.614258, 0.001953, 0.003906"
+			is_dynamic="false" />
+		<decal_texture
+			name="decal_b_d"
+			atlas_pos="0.677734, 0.511719, 0.031250, 0.062500"
+			is_dynamic="false" />
+		<decal_texture
+			name="decal_b_n"
+			atlas_pos="0.590759, 0.725586, 0.031250, 0.062500"
+			is_dynamic="false" />
+		<decal_texture
+			name="decal_b_s"
+			atlas_pos="0.919495, 0.715820, 0.031250, 0.062500"
+			is_dynamic="false" />
+		<decal_texture
+			name="decal_empty_melee_siege"
+			atlas_pos="0.965454, 0.784180, 0.015625, 0.031250"
+			is_dynamic="false" />
+		<decal_texture
+			name="decal_empty_ranged_siege"
+			atlas_pos="0.816956, 0.680664, 0.031250, 0.062500"
+			is_dynamic="false" />
+		<decal_texture
+			name="decal_gg"
+			atlas_pos="0.283142, 0.708008, 0.031250, 0.062500"
+			is_dynamic="false" />
+		<decal_texture
+			name="decal_map_battania_path_d"
+			atlas_pos="0.677734, 0.585938, 0.031250, 0.062500"
+			is_dynamic="false" />
+		<decal_texture
+			name="decal_map_city_circle"
+			atlas_pos="0.894043, 0.276367, 0.062500, 0.125000"
+			is_dynamic="false" />
+		<decal_texture
+			name="decal_map_empire_path_d"
+			atlas_pos="0.640625, 0.585938, 0.031250, 0.062500"
+			is_dynamic="false" />
+		<decal_texture
+			name="decal_map_khuzait_path_d"
+			atlas_pos="0.492188, 0.511719, 0.031250, 0.062500"
+			is_dynamic="false" />
+		<decal_texture
+			name="decal_map_khuzait_path_n"
+			atlas_pos="0.309082, 0.776367, 0.031250, 0.062500"
+			is_dynamic="false" />
+		<decal_texture
+			name="decal_map_khuzait_path_s"
+			atlas_pos="0.488220, 0.725586, 0.031250, 0.062500"
+			is_dynamic="false" />
+		<decal_texture
+			name="decal_production_flax_farm_d"
+			atlas_pos="0.603516, 0.585938, 0.031250, 0.062500"
+			is_dynamic="false" />
+		<decal_texture
+			name="decal_production_flax_farm_n"
+			atlas_pos="0.338440, 0.639648, 0.031250, 0.062500"
+			is_dynamic="false" />
+		<decal_texture
+			name="decal_production_wheat_farm_d"
+			atlas_pos="0.188477, 0.517578, 0.031250, 0.062500"
+			is_dynamic="false" />
+		<decal_texture
+			name="decal_production_wheat_farm_n"
+			atlas_pos="0.454041, 0.725586, 0.031250, 0.062500"
+			is_dynamic="false" />
+		<decal_texture
+			name="decal_siege_ram"
+			atlas_pos="0.498169, 0.793945, 0.015625, 0.031250"
+			is_dynamic="false" />
+		<decal_texture
+			name="decal_siege_ranged"
+			atlas_pos="0.830017, 0.749023, 0.031250, 0.062500"
+			is_dynamic="false" />
+		<decal_texture
+			name="decal_siege_tower"
+			atlas_pos="0.535278, 0.793945, 0.015625, 0.031250"
+			is_dynamic="false" />
+		<decal_texture
+			name="decal_snow_footprint_d"
+			atlas_pos="0.113708, 0.591797, 0.030151, 0.061157"
+			is_dynamic="false" />
+		<decal_texture
+			name="decal_snow_footprint_n"
+			atlas_pos="0.932373, 0.784180, 0.030151, 0.061157"
+			is_dynamic="false" />
+		<decal_texture
+			name="desert_floor_b"
+			atlas_pos="0.795837, 0.749023, 0.031250, 0.062500"
+			is_dynamic="false" />
+		<decal_texture
+			name="dirt_leaking_a_d"
+			atlas_pos="0.077148, 0.517578, 0.031250, 0.062500"
+			is_dynamic="false" />
+		<decal_texture
+			name="dirt_leaking_a_s"
+			atlas_pos="0.727478, 0.749023, 0.031250, 0.062500"
+			is_dynamic="false" />
+		<decal_texture
+			name="fire_damage"
+			atlas_pos="0.577698, 0.657227, 0.031250, 0.062500"
+			is_dynamic="false" />
+		<decal_texture
+			name="flat_n"
+			atlas_pos="0.990295, 0.586914, 0.003906, 0.007812"
+			is_dynamic="false" />
+		<decal_texture
+			name="footprint_snow_n"
+			atlas_pos="0.479614, 0.793945, 0.015625, 0.031250"
+			is_dynamic="false" />
+		<decal_texture
+			name="grass_a_d"
+			atlas_pos="0.714844, 0.511719, 0.031250, 0.062500"
+			is_dynamic="false" />
+		<decal_texture
+			name="ground_grass_b_s"
+			atlas_pos="0.851135, 0.680664, 0.031250, 0.062500"
+			is_dynamic="false" />
+		<decal_texture
+			name="ground_soil_a_d"
+			atlas_pos="0.040039, 0.517578, 0.031250, 0.062500"
+			is_dynamic="false" />
+		<decal_texture
+			name="ground_soil_a_n"
+			atlas_pos="0.035645, 0.663086, 0.031250, 0.062500"
+			is_dynamic="false" />
+		<decal_texture
+			name="ground_soil_a_s"
+			atlas_pos="0.069824, 0.663086, 0.031250, 0.062500"
+			is_dynamic="false" />
+		<decal_texture
+			name="ground_soil_b_d"
+			atlas_pos="0.114258, 0.517578, 0.031250, 0.062500"
+			is_dynamic="false" />
+		<decal_texture
+			name="ground_soil_b_n"
+			atlas_pos="0.885315, 0.680664, 0.031250, 0.062500"
+			is_dynamic="false" />
+		<decal_texture
+			name="ground_soil_b_s"
+			atlas_pos="0.001465, 0.731445, 0.031250, 0.062500"
+			is_dynamic="false" />
+		<decal_texture
+			name="ground_straw_b_d"
+			atlas_pos="0.455078, 0.585938, 0.031250, 0.062500"
+			is_dynamic="false" />
+		<decal_texture
+			name="ground_straw_b_n"
+			atlas_pos="0.372620, 0.639648, 0.031250, 0.062500"
+			is_dynamic="false" />
+		<decal_texture
+			name="gui_map_circle_atlas"
+			atlas_pos="0.148254, 0.639648, 0.187256, 0.062500"
+			is_dynamic="false" />
+		<decal_texture
+			name="infantry_sand_step_d"
+			atlas_pos="0.529297, 0.511719, 0.031250, 0.062500"
+			is_dynamic="false" />
+		<decal_texture
+			name="infantry_sand_step_n"
+			atlas_pos="0.693298, 0.725586, 0.031250, 0.062500"
+			is_dynamic="false" />
+		<decal_texture
+			name="mainmap_decal_moss_d"
+			atlas_pos="0.789062, 0.541016, 0.031250, 0.062500"
+			is_dynamic="false" />
+		<decal_texture
+			name="mainmap_decal_moss_s"
+			atlas_pos="0.385681, 0.708008, 0.031250, 0.062500"
+			is_dynamic="false" />
+		<decal_texture
+			name="mainmap_decal_undervillage_burnt_d"
+			atlas_pos="0.901367, 0.142578, 0.062500, 0.125000"
+			is_dynamic="false" />
+		<decal_texture
+			name="mainmap_decal_undervillage_d"
+			atlas_pos="0.764648, 0.005859, 0.062500, 0.125000"
+			is_dynamic="false" />
+		<decal_texture
+			name="mainmap_decal_undervillage_desert_d"
+			atlas_pos="0.002930, 0.517578, 0.031250, 0.062500"
+			is_dynamic="false" />
+		<decal_texture
+			name="map_track_arrow"
+			atlas_pos="0.206543, 0.776367, 0.031250, 0.062500"
+			is_dynamic="false" />
+		<decal_texture
+			name="mud_a_d"
+			atlas_pos="0.863281, 0.541016, 0.031250, 0.062500"
+			is_dynamic="false" />
+		<decal_texture
+			name="physically_based_iron_s"
+			atlas_pos="0.001465, 0.663086, 0.031250, 0.062500"
+			is_dynamic="false" />
+		<decal_texture
+			name="plain_blue"
+			atlas_pos="0.990295, 0.573242, 0.003906, 0.007812"
+			is_dynamic="false" />
+		<decal_texture
+			name="puddles_d"
+			atlas_pos="0.826172, 0.541016, 0.031250, 0.062500"
+			is_dynamic="false" />
+		<decal_texture
+			name="puddles_n"
+			atlas_pos="0.714417, 0.657227, 0.031250, 0.062500"
+			is_dynamic="false" />
+		<decal_texture
+			name="puddles_s"
+			atlas_pos="0.112244, 0.661743, 0.031250, 0.062500"
+			is_dynamic="false" />
+		<decal_texture
+			name="road_01_decal_d"
+			atlas_pos="0.833008, 0.142578, 0.062500, 0.125000"
+			is_dynamic="false" />
+		<decal_texture
+			name="road_01_decal_n"
+			atlas_pos="0.828613, 0.407227, 0.062500, 0.125000"
+			is_dynamic="false" />
+		<decal_texture
+			name="road_01_decal_s"
+			atlas_pos="0.828613, 0.276367, 0.062500, 0.125000"
+			is_dynamic="false" />
+		<decal_texture
+			name="road_02_decal_d"
+			atlas_pos="0.833008, 0.005859, 0.062500, 0.125000"
+			is_dynamic="false" />
+		<decal_texture
+			name="road_02_decal_n"
+			atlas_pos="0.763184, 0.407227, 0.062500, 0.125000"
+			is_dynamic="false" />
+		<decal_texture
+			name="road_02_decal_s"
+			atlas_pos="0.257324, 0.508789, 0.062500, 0.125000"
+			is_dynamic="false" />
+		<decal_texture
+			name="road_mud_01_decal_d"
+			atlas_pos="0.901367, 0.005859, 0.062500, 0.125000"
+			is_dynamic="false" />
+		<decal_texture
+			name="road_mud_01_decal_n"
+			atlas_pos="0.388184, 0.508789, 0.062500, 0.125000"
+			is_dynamic="false" />
+		<decal_texture
+			name="road_mud_01_decal_s"
+			atlas_pos="0.322754, 0.508789, 0.062500, 0.125000"
+			is_dynamic="false" />
+		<decal_texture
+			name="road_mud_02_decal_d"
+			atlas_pos="0.764648, 0.142578, 0.062500, 0.125000"
+			is_dynamic="false" />
+		<decal_texture
+			name="road_mud_02_decal_n"
+			atlas_pos="0.763184, 0.276367, 0.062500, 0.125000"
+			is_dynamic="false" />
+		<decal_texture
+			name="road_mud_02_decal_s"
+			atlas_pos="0.894043, 0.407227, 0.062500, 0.125000"
+			is_dynamic="false" />
+		<decal_texture
+			name="road_water_leaking_a_d"
+			atlas_pos="0.412720, 0.796875, 0.062500, 0.031250"
+			is_dynamic="false" />
+		<decal_texture
+			name="type_a_decal"
+			atlas_pos="0.956116, 0.647461, 0.031250, 0.062500"
+			is_dynamic="false" />
+		<decal_texture
+			name="type_b_decal"
+			atlas_pos="0.680237, 0.657227, 0.031250, 0.062500"
+			is_dynamic="false" />
+		<decal_texture
+			name="type_c_decal"
+			atlas_pos="0.646057, 0.657227, 0.031250, 0.062500"
+			is_dynamic="false" />
+		<decal_texture
+			name="visualtest_parallax_d"
+			atlas_pos="0.900391, 0.541016, 0.031250, 0.062500"
+			is_dynamic="false" />
+		<decal_texture
+			name="visualtest_parallax_n"
+			atlas_pos="0.509338, 0.657227, 0.031250, 0.062500"
+			is_dynamic="false" />
+		<decal_texture
+			name="visualtest_parallax_s"
+			atlas_pos="0.543518, 0.657227, 0.031250, 0.062500"
+			is_dynamic="false" />
+		<decal_texture
+			name="wall_damaged_decal_a_d"
+			atlas_pos="0.455078, 0.511719, 0.031250, 0.062500"
+			is_dynamic="false" />
+		<decal_texture
+			name="wall_damaged_decal_a_n"
+			atlas_pos="0.172363, 0.776367, 0.031250, 0.062500"
+			is_dynamic="false" />
+		<decal_texture
+			name="wall_damaged_decal_a_s"
+			atlas_pos="0.214783, 0.708008, 0.031250, 0.062500"
+			is_dynamic="false" />
+		<decal_texture
+			name="worldmap_swamp_decal_1_d"
+			atlas_pos="0.937500, 0.576172, 0.031250, 0.062500"
+			is_dynamic="false" />
+		<decal_texture
+			name="worldmap_swamp_decal_2_d"
+			atlas_pos="0.566406, 0.511719, 0.031250, 0.062500"
+			is_dynamic="false" />
+		<decal_texture
+			name="worldmap_swamp_decal_3_d"
+			atlas_pos="0.002930, 0.005859, 0.250000, 0.500000"
+			is_dynamic="false" />
+		<decal_texture
+			name="worldmap_swamp_decal_3_n"
+			atlas_pos="0.257324, 0.002930, 0.250000, 0.500000"
+			is_dynamic="false" />
+		<decal_texture
+			name="worldmap_swamp_decal_3_s"
+			atlas_pos="0.510254, 0.002930, 0.250000, 0.500000"
+			is_dynamic="false" />
+	</decal_textures>
+</base>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<base xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" type="solution">
+  <outputDirectory>../MBModule/MBModule/</outputDirectory>
+  <XMLDirectory>../WOTS/Modules/BloodMod/</XMLDirectory>
+  <ModuleAssemblyDirectory>../WOTS/bin/</ModuleAssemblyDirectory>
+<file id="soln_decal_sets" name="ModuleData/decal_sets.xml" type="decal_set" />
+<file id="soln_decal_textures" name="ModuleData/decal_textures_battle.xml" type="decal_texture" />
+<file id="soln_decal_textures" name="ModuleData/decal_textures_town.xml" type="decal_texture" />
+<file id="soln_decal_textures" name="ModuleData/decal_textures_all.xml" type="decal_texture" />
+</base>
