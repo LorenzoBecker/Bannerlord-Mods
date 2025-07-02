@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Module xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+        xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/BUTR/Bannerlord.XmlSchemas/master/SubModule.xsd" >
+  <Id value="Bannerlord.MBOptionScreen" />
+  <Name value="Mod Configuration Menu v5" />
+  <Version value="v5.10.1" />
+  <DefaultModule value="false" />
+  <ModuleCategory value="Singleplayer" />
+  <ModuleType value="Community" />
+  <Url value="https://www.nexusmods.com/mountandblade2bannerlord/mods/612" />
+  <UpdateInfo value="NexusMods:612" />
+  <DependedModules>
+    <DependedModule Id="Bannerlord.Harmony" DependentVersion="v2.2.2" />
+    <DependedModule Id="Bannerlord.ButterLib" DependentVersion="v2.8.15" />
+    <DependedModule Id="Bannerlord.UIExtenderEx" DependentVersion="v2.8.1" />
+  </DependedModules>
+  <!-- They are all treated as optional by Vanilla -->
+  <ModulesToLoadAfterThis>
+    <Module Id="Native" />
+    <Module Id="SandBoxCore" />
+    <Module Id="Sandbox" />
+    <Module Id="StoryMode" />
+    <Module Id="CustomBattle" />
+  </ModulesToLoadAfterThis>
+  <!-- Community Metadata -->
+  <DependedModuleMetadatas>
+    <DependedModuleMetadata id="Bannerlord.Harmony" order="LoadBeforeThis" version="v2.2.2" />
+    <DependedModuleMetadata id="Bannerlord.ButterLib" order="LoadBeforeThis" version="v2.8.15" />
+    <DependedModuleMetadata id="Bannerlord.UIExtenderEx" order="LoadBeforeThis" version="v2.8.1" />
+
+    <DependedModuleMetadata id="Native" order="LoadAfterThis" version="v1.0.0.*" />
+    <DependedModuleMetadata id="SandBoxCore" order="LoadAfterThis" version="v1.0.0.*" optional="true" />
+    <DependedModuleMetadata id="Sandbox" order="LoadAfterThis" version="v1.0.0.*" optional="true" />
+    <DependedModuleMetadata id="StoryMode" order="LoadAfterThis" version="v1.0.0.*" optional="true" />
+    <DependedModuleMetadata id="CustomBattle" order="LoadAfterThis" version="v1.0.0.*" optional="true" />
+
+    </DependedModuleMetadatas>
+  <!-- Community Metadata -->
+  <SubModules>
+    <!--Abstraction -->
+    <SubModule>
+      <Name value="MCMv5" />
+      <DLLName value="MCMv5.dll" />
+      <SubModuleClassType value="MCM.MCMSubModule" />
+      <Assemblies/>
+      <Tags />
+    </SubModule>
+    <!--Builtin SubModule -->
+    <SubModule>
+      <Name value="MCMv5 Basic Implementation" />
+      <DLLName value="MCMv5.dll" />
+      <SubModuleClassType value="MCM.Internal.MCMImplementationSubModule" />
+      <Assemblies/>
+      <Tags />
+    </SubModule>
+    <!--MCMv5 Wrapper Support SubModule -->
+    <SubModule>
+      <Name value="MCMv5 Wrapper Support" />
+      <DLLName value="MCM.UI.Adapter.MCMv5.dll" />
+      <SubModuleClassType value="MCM.UI.Adapter.MCMv5.SubModule" />
+      <Assemblies/>
+      <Tags />
+    </SubModule>
+    <!--UI SubModule -->
+    <SubModule>
+      <Name value="MCMv5 UI" />
+      <DLLName value="MCMv5.UI.dll" />
+      <SubModuleClassType value="MCM.UI.MCMUISubModule" />
+      <Assemblies/>
+      <Tags />
+    </SubModule>
+  </SubModules>
+</Module>

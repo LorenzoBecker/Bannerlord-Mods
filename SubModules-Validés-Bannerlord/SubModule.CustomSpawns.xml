@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Module xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+        xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/BUTR/Bannerlord.XmlSchemas/master/SubModule.xsd" >
+  <Id value="CustomSpawns" />
+  <Name value="Custom Spawns API"/>
+  <Version value="v2.0.1" />
+  <DefaultModule value="false" />
+  <ModuleCategory value="Singleplayer" />
+  <ModuleType value="Community" />
+  <Url value="https://www.nexusmods.com/mountandblade2bannerlord/mods/411" />
+  <DependedModules>
+    <DependedModule Id="Bannerlord.Harmony" DependentVersion="v2.2.2"/>
+    <DependedModule Id="Native" DependentVersion="v1.2.11"/>
+    <DependedModule Id="SandBoxCore" DependentVersion="v1.2.11"/>
+    <DependedModule Id="Sandbox" DependentVersion="v1.2.11"/>
+  </DependedModules>
+  <DependedModuleMetadatas>
+    <DependedModuleMetadata id="Bannerlord.Harmony" order="LoadBeforeThis" version="v2.2.2.*" />
+    <DependedModuleMetadata id="Native" order="LoadBeforeThis" version="v1.2.11.*"/>
+    <DependedModuleMetadata id="SandBoxCore" order="LoadBeforeThis" version="v1.2.11.*"/>
+    <DependedModuleMetadata id="Sandbox" order="LoadBeforeThis" version="v1.2.11.*"/>
+  </DependedModuleMetadatas>
+  <SubModules>
+    <SubModule>
+      <Name value="CustomSpawns"/>
+      <DLLName value="CustomSpawns.dll"/>
+      <SubModuleClassType value="CustomSpawns.Main"/>
+      <Tags>
+        <Tag key="DedicatedServerType" value="none"/>
+        <Tag key="IsNoRenderModeElement" value="false"/>
+      </Tags>
+    </SubModule>
+  </SubModules>
+  <Xmls>
+  </Xmls>
+</Module>

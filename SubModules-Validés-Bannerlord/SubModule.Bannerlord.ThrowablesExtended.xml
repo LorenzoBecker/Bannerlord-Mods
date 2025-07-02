@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Module xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+        xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/BUTR/Bannerlord.XmlSchemas/master/SubModule.xsd" >
+  <Id value="Bannerlord.ThrowablesExtended" />
+  <Name value="Bannerlord.ThrowablesExtended" />
+  <Version value="v1.1.2" />
+  <DefaultModule value="false" />
+  <SingleplayerModule value="true"/>
+  <MultiplayerModule value="false"/>
+  <ModuleType value="Community" />
+  <Url value="$moduleurl$" />
+  <DependedModules>
+    <DependedModule Id="Bannerlord.Harmony" DependentVersion="v2.2.2" />
+    <DependedModule Id="Native" />
+    <DependedModule Id="SandBoxCore" />
+    <DependedModule Id="Sandbox" />
+    <DependedModule Id="StoryMode" />
+	<DependedModule Id="Bannerlord.MBOptionScreen"/>
+    <DependedModule Id="CustomBattle" />
+  </DependedModules>
+  <!-- Community Dependency Metadata -->
+  <!-- https://github.com/BUTR/Bannerlord.BLSE#community-dependency-metadata -->
+  <DependedModuleMetadatas>
+    <DependedModuleMetadata id="Bannerlord.Harmony" order="LoadBeforeThis" version="v2.2.2" />
+    <DependedModuleMetadata id="Native" order="LoadBeforeThis" />
+    <DependedModuleMetadata id="SandBoxCore" order="LoadBeforeThis" />
+    <DependedModuleMetadata id="Sandbox" order="LoadBeforeThis" />
+    <DependedModuleMetadata id="StoryMode" order="LoadBeforeThis" />
+    <DependedModuleMetadata id="CustomBattle" order="LoadBeforeThis" />
+  </DependedModuleMetadatas>
+  <!-- Community Dependency Metadata -->
+  <SubModules>
+    <SubModule>
+      <Name value="Bannerlord.ThrowablesExtended" />
+      <DLLName value="Bannerlord.ThrowablesExtended.dll" />
+      <SubModuleClassType value="Bannerlord.ThrowablesExtended.SubModule" />
+      <Tags />
+    </SubModule>
+  </SubModules>
+</Module>
