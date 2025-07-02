@@ -1,0 +1,54 @@
+ <Module>
+     <Name value="Fourberie"/>
+     <Id value="Fourberie"/>
+     <Version value="v1.2.12.1"/>
+     <SingleplayerModule value="true"/>
+     <MultiplayerModule value="false"/>
+     <DependedModules>
+         <DependedModule Id="Native" DependentVersion="v1.2.12"/>
+         <DependedModule Id="SandBoxCore" DependentVersion="v1.2.12"/>
+         <DependedModule Id="Sandbox" DependentVersion="v1.2.12"/>
+         <DependedModule Id="StoryMode" DependentVersion="v1.2.12"/>
+     </DependedModules> 
+     <SubModules>
+         <SubModule>
+             <Name value="Fourberie"/>
+             <DLLName value="Fourberie.dll"/>
+             <SubModuleClassType value="Fourberie.Main"/>
+             <Tags>
+                 <Tag key="DedicatedServerType" value="none" />
+                 <Tag key="IsNoRenderModeElement" value="false" />
+             </Tags>
+         </SubModule>
+     </SubModules>
+    <Xmls>
+        <XmlNode>                
+            <XmlName id="Scene" path="scenesFourb"/>
+			<IncludedGameTypes>
+				<GameType value = "Campaign"/>
+				<GameType value = "CampaignStoryMode"/>
+			</IncludedGameTypes>
+	    </XmlNode>
+        <XmlNode>                
+			<XmlName id="NPCCharacters" path="spnpcFourb"/>
+			<IncludedGameTypes>
+				<GameType value = "Campaign"/>
+				<GameType value = "CampaignStoryMode"/>
+			</IncludedGameTypes>
+	    </XmlNode>
+        <XmlNode>                
+			<XmlName id="NPCCharacters" path="spnpcFourbFightClub"/>
+			<IncludedGameTypes>
+				<GameType value = "Campaign"/>
+				<GameType value = "CampaignStoryMode"/>
+			</IncludedGameTypes>
+	    </XmlNode>        
+        <XmlNode>                
+			<XmlName id="Items" path="itemsFourb"/>
+			<IncludedGameTypes>
+				<GameType value = "Campaign"/>
+				<GameType value = "CampaignStoryMode"/>
+			</IncludedGameTypes>
+	    </XmlNode>
+	</Xmls>
+ </Module>

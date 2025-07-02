@@ -1,0 +1,38 @@
+﻿<Module>
+  <Name value="Bodyguards"/>
+  <Id value="Bodyguards"/>
+  <Version value="v1.1.0.1"/>
+  <SingleplayerModule value="true"/>
+  <MultiplayerModule value="false"/>
+  <DependedModules>
+    <DependedModule Id="Native" DependentVersion="v1.1.0" Optional="false"/>
+    <DependedModule Id="SandBoxCore" DependentVersion="v1.1.0" Optional="false"/>
+    <DependedModule Id="Sandbox" DependentVersion="v1.1.0" Optional="false"/>
+    <DependedModule Id="StoryMode" DependentVersion="v1.1.0" Optional="false"/>
+  </DependedModules>
+  <ModuleType value="Community" />
+  <SubModules>
+    <SubModule>
+      <Name value="Bodyguards"/>
+      <DLLName value="Bodyguards.dll"/>
+      <SubModuleClassType value="Bodyguards.SubModule"/>
+      <Tags>
+        <Tag key="DedicatedServerType" value="none" />
+        <Tag key="IsNoRenderModeElement" value="false" />
+      </Tags>
+    </SubModule>
+	<SubModule>
+      <Name value="MCMv5" />
+      <DLLName value="MCMv5.dll" />
+      <SubModuleClassType value="MCM.MCMSubModule" />
+      <Tags />
+    </SubModule>
+    <SubModule>
+      <Name value="MCMv5 Basic Implementation" />
+      <DLLName value="MCMv5.dll" />
+      <SubModuleClassType value="MCM.Internal.MCMImplementationSubModule" />
+      <Tags />
+    </SubModule>
+  </SubModules>
+  <Xmls/>
+</Module>

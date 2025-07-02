@@ -1,0 +1,30 @@
+<Module>
+	<Name value="GT_CarbonBody"/>
+	<Id value="GT_CarbonBody"/>
+	<Version value="e1.0.1"/>
+	<DefaultModule value="false"/>
+	<SingleplayerModule value="true"/>
+	<MultiplayerModule value="false"/>
+	<ModuleType value="Community"/>
+	<DependedModules>
+		<DependedModule Id="Native" DependentVersion="e1.0.1"/>
+		<DependedModule Id="SandBoxCore" DependentVersion="e1.0.1"/>
+		<DependedModule Id="Sandbox" DependentVersion="e1.0.1"/>
+		<DependedModule Id="CustomBattle" DependentVersion="e1.0.1"/>
+		<DependedModule Id="StoryMode" DependentVersion="e1.0.1"/>
+	</DependedModules>
+	<SubModules/>
+	<Xmls>
+		
+		<XmlNode>
+			<XmlName id="Items" path="items"/>
+			<IncludedGameTypes>
+				<GameType value="Campaign"/>
+				<GameType value="CampaignStoryMode"/>
+			</IncludedGameTypes>
+		</XmlNode>
+		
+		
+	</Xmls>
+</Module>
+

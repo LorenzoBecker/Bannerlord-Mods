@@ -1,0 +1,26 @@
+﻿<?xml version = "1.0" encoding = "utf-8"?>
+<Module>
+	<Name value = "Bandit Black Hole"/>
+	<Id value = "BanditBlackHole"/>
+	<Version value = "v1.0.5"/>
+	<SingleplayerModule value = "true"/>
+	<MultiplayerModule value = "false"/>
+	<DependedModules>
+        <DependedModule Id = "Native"/>
+        <DependedModule Id = "SandBoxCore"/>
+        <DependedModule Id = "Sandbox"/>
+        <DependedModule Id = "CustomBattle"/>
+        <DependedModule Id = "StoryMode"/>
+	</DependedModules>
+	<SubModules>
+		<SubModule>
+			<Name value = "BanditBlackHole"/>
+			<DLLName value = "Bandit Black Hole.dll"/>
+			<SubModuleClassType value = "Bandit_Black_Hole.Main"/>
+			<Tags>
+				<Tag key = "DedicatedServerType" value = "none" />
+				<Tag key = "IsNoRenderModeElement" value = "false" />
+			</Tags>
+		</SubModule>
+	</SubModules>
+</Module>
