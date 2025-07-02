@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Module>
+	<Name value = "Mercenary Warfare"/>
+	<Id value = "MercWar"/>
+	<Version value = "v1.0.0"/>
+	<DefaultModule value="false"/>
+	<ModuleCategory value="Singleplayer"/>
+  	<Official value="false" />
+	<DependedModules>
+		<DependedModule Id="Native"/>
+		<DependedModule Id="SandBoxCore"/>
+		<DependedModule Id="Sandbox"/>
+		<DependedModule Id="StoryMode"/>
+		<DependedModule Id="UnlimitedMC" Optional="false"/>
+	</DependedModules>
+	<SubModules/>
+	<Xmls>      
+                <XmlNode>                
+			<XmlName id="Factions" path="spclans"/>
+			<IncludedGameTypes>
+				<GameType value = "Campaign"/>
+				<GameType value = "CampaignStoryMode"/>
+				<GameType value = "CustomGame"/>
+				<GameType value = "EditorGame"/>
+			</IncludedGameTypes>
+		</XmlNode> 
+                <XmlNode>                
+			<XmlName id="NPCCharacters" path="spspecialcharacters"/>
+			<IncludedGameTypes>
+				<GameType value = "Campaign"/>
+				<GameType value = "CampaignStoryMode"/>
+				<GameType value = "CustomGame"/>
+				<GameType value = "EditorGame"/>
+			</IncludedGameTypes>
+		</XmlNode>
+	</Xmls>
+</Module>

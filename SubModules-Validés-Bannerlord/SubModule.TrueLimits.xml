@@ -1,0 +1,27 @@
+<Module>
+	<Name value="TrueLimits"/>
+	<Id value="TrueLimits"/>
+	<Version value="v2.0.3"/>
+	<SingleplayerModule value="true"/>
+	<MultiplayerModule value="false"/>
+	<DependedModules>
+		<DependedModule Id="Native"/>
+		<DependedModule Id="SandBoxCore"/>
+		<DependedModule Id="Sandbox"/>
+		<DependedModule Id="CustomBattle"/>
+		<DependedModule Id="StoryMode" />
+		<DependedModule Id="TrueController" />
+	</DependedModules>
+	<SubModules>
+		<SubModule>
+			<Name value="TrueLimits"/>
+			<DLLName value="TrueLimits.dll"/>
+			<SubModuleClassType value="TrueLimits.Main"/>
+			<Tags>
+				<Tag key="DedicatedServerType" value="none" />
+				<Tag key="IsNoRenderModeElement" value="false" />
+			</Tags>
+		</SubModule>
+	</SubModules>
+	<Xmls/>
+</Module>

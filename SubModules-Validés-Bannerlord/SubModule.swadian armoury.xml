@@ -1,0 +1,28 @@
+<Module>
+	<Name value="swadian armoury"/>
+	<Id value="swadian armoury"/>
+	<Version value="v1.0.0" />
+	<DefaultModule value="false"/>
+	<SingleplayerModule value="true"/>
+	<MultiplayerModule value="false"/>
+	<Official value="false"/>
+	<DependedModules>
+		<DependedModule Id="Native"/>
+		<DependedModule Id="SandBoxCore"/>/>
+		<DependedModule Id="Sandbox"/>/>
+		<DependedModule Id="CustomBattle"/>/>
+		<DependedModule Id="StoryMode"/>/>
+	</DependedModules>
+	<SubModules/>
+	<Xmls>
+		<XmlNode>
+			<XmlName id="Items" path="items"/>
+			<IncludedGameTypes>
+				<GameType value="Campaign"/>
+				<GameType value="CampaignStoryMode"/>
+			</IncludedGameTypes>
+		</XmlNode>
+	
+	</Xmls>
+</Module>
+

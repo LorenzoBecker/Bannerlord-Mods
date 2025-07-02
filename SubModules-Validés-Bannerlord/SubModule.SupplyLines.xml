@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Module>
+    <Name value="SupplyLines"/>
+    <Id value="SupplyLines"/>
+    <Version value="v1.9.3"/>
+    <SingleplayerModule value="true"/>
+    <MultiplayerModule value="false"/>
+	<Official value="false"/>
+    <DependedModules>
+        <DependedModule Id="Native"/>
+        <DependedModule Id="SandBoxCore"/>
+        <DependedModule Id="Sandbox"/>
+        <DependedModule Id="StoryMode"/>
+        <DependedModule Id="Bannerlord.Harmony"/>
+        <DependedModule Id="Bannerlord.MBOptionScreen"/>
+    </DependedModules>
+
+    <SubModules>
+        <SubModule>
+            <Name value="SupplyLines"/>
+            <DLLName value="SupplyLines.dll"/>
+            <SubModuleClassType value="SupplyLines.CheyronSubModule"/>
+            <Tags>
+                <Tag key="DedicatedServerType" value="none"/>
+				<Tag key="IsNoRenderModeElement" value="false"/>
+            </Tags>
+        </SubModule>
+    </SubModules>
+</Module>

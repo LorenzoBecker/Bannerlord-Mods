@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Module>
+    <Name value="Zweihander - RBM Patch"/>
+    <Id value="ZweihanderRBM"/>
+	<Version value="v1.2.12"/>
+	<SingleplayerModule value="true"/>
+	<MultiplayerModule value="false"/>
+	<DependedModules>
+		<DependedModule Id="Native"/>
+		<DependedModule Id="SandBoxCore"/>
+		<DependedModule Id="Sandbox"/>
+		<DependedModule Id="CustomBattle"/>
+		<DependedModule Id="StoryMode" />
+		<DependedModule Id="RBM" />
+		<DependedModule Id="Zweihander" /> 
+	</DependedModules>
+	<SubModules>
+	</SubModules>
+	<Xmls>
+	    <XmlNode>
+    		<XmlName id="Items" path="zwei_items"/>
+      		<IncludedGameTypes>
+        		<GameType value="Campaign"/>
+        		<GameType value="CampaignStoryMode"/>
+        		<GameType value="CustomGame"/>
+      		</IncludedGameTypes>
+    	</XmlNode>
+		<XmlNode>
+			<XmlName id="CraftingPieces" path="zwei_pieces"/>
+			<IncludedGameTypes>
+				<GameType value="Campaign"/>
+				<GameType value="CampaignStoryMode"/>
+				<GameType value="CustomGame"/>
+			</IncludedGameTypes>
+		</XmlNode>
+<!-- 
+		<XmlNode>
+			<XmlName id="CraftingTemplates" path="zwei_craft_teamplates"/>
+			<IncludedGameTypes>
+				<GameType value="Campaign"/>
+				<GameType value="CampaignStoryMode"/>
+				<GameType value="CustomGame"/>
+			</IncludedGameTypes>
+		</XmlNode>
+		<XmlNode>
+			<XmlName id="WeaponDescriptions" path="zwei_weapon_descriptions"/>
+			<IncludedGameTypes>
+				<GameType value = "Campaign"/>
+				<GameType value = "CampaignStoryMode"/>
+				<GameType value = "CustomGame"/>
+			</IncludedGameTypes>
+		</XmlNode>
+-->
+	</Xmls>
+</Module>

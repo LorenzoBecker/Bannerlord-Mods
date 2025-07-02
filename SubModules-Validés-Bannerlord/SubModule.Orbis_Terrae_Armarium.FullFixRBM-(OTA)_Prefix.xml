@@ -1,0 +1,30 @@
+<Module>
+	<Name value="Orbis Terrae Armarium: FullFix &amp; RBM, [OTA] Prefix"/>
+	<Id value="Orbis_Terrae_Armarium_FullFix-RBM-OTA_Prefix"/>
+	<Version value="v1.2.0.0"/>
+	<DefaultModule value="false"/>
+	<ModuleCategory value="Singleplayer"/>
+	<Official value="false"/>
+	<DependedModules>
+		<DependedModule Id="Native"/>
+		<DependedModule Id="SandBoxCore"/>
+		<DependedModule Id="Sandbox"/>
+		<DependedModule Id="CustomBattle"/>
+		<DependedModule Id="StoryMode"/>
+		<DependedModule Id="RBM"/>
+		<DependedModule Id="Orbis_Terrae_Armarium"/>
+	</DependedModules>
+	<DependedModuleMetadatas>
+		<DependedModuleMetadata id="BannerKings" order="LoadAfterThis" optional="true"/>
+	</DependedModuleMetadatas>
+	<SubModules/>
+	<Xmls>
+		<XmlNode>
+			<XmlName id="Items" path="items"/>
+			<IncludedGameTypes>
+				<GameType value="Campaign"/>
+				<GameType value="CampaignStoryMode"/>
+			</IncludedGameTypes>
+		</XmlNode>
+	</Xmls>
+</Module>

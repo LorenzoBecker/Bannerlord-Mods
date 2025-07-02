@@ -1,0 +1,22 @@
+ <Module>
+     <Name value="UnlimitedMC"/>
+     <Id value="UnlimitedMC"/>
+     <Version value="v2.1.0"/>
+     <SingleplayerModule value="true"/>
+     <MultiplayerModule value="false"/>
+     <DependedModules>
+         <DependedModule Id="Bannerlord.Harmony" />
+     </DependedModules>
+     <SubModules>
+         <SubModule>
+             <Name value="UnlimitedMC"/>
+             <DLLName value="UnlimitedMC.dll"/>
+             <SubModuleClassType value="UnlimitedMC.MainSub"/>
+             <Tags>
+                 <Tag key="DedicatedServerType" value="none" />
+                 <Tag key="IsNoRenderModeElement" value="false" />
+             </Tags>
+         </SubModule>
+    </SubModules>
+    <Xmls/>
+ </Module>

@@ -1,0 +1,53 @@
+<Module>
+	<Name value="Open Source Saddlery"/>
+	<Id value="OpenSourceSaddlery"/>
+	<Version value="v1.8.0"/>
+	<DefaultModule value="false"/>
+	<ModuleCategory value="Singleplayer"/>
+	<ModuleType value="Community"/>
+	<Official value="false"/>
+	<DependedModules>
+		<DependedModule Id="Native"/>
+		<DependedModule Id="SandBoxCore"/>
+		<DependedModule Id="Sandbox"/>
+		<DependedModule Id="CustomBattle"/>
+		<DependedModule Id="StoryMode"/>
+	</DependedModules>
+	<DependedModuleMetadatas>
+		<DependedModuleMetadata id="Native" order="LoadBeforeThis"/>
+		<DependedModuleMetadata id="SandBoxCore" order="LoadBeforeThis"/>
+		<DependedModuleMetadata id="Sandbox" order="LoadBeforeThis"/>
+		<DependedModuleMetadata id="StoryMode" order="LoadBeforeThis"/>
+		<DependedModuleMetadata id="CustomBattle" order="LoadBeforeThis"/>
+	</DependedModuleMetadatas>
+	<SubModules/>
+	<Xmls>
+		<XmlNode>
+			<XmlName id="Items" path="OSA_ar_reforms_saddlery"/>
+			<IncludedGameTypes>
+				<GameType value="Campaign"/>
+				<GameType value="CampaignStoryMode"/>
+				<GameType value="CustomGame"/>
+				<GameType value="EditorGame"/>
+			</IncludedGameTypes>
+		</XmlNode>
+		<XmlNode>
+			<XmlName id="Items" path="OSA_dz_custom_saddlery"/>
+			<IncludedGameTypes>
+				<GameType value="Campaign"/>
+				<GameType value="CampaignStoryMode"/>
+				<GameType value="CustomGame"/>
+				<GameType value="EditorGame"/>
+			</IncludedGameTypes>
+		</XmlNode>
+		<XmlNode>
+			<XmlName id="Items" path="OSA_tv_custom_saddlery"/>
+			<IncludedGameTypes>
+				<GameType value="Campaign"/>
+				<GameType value="CampaignStoryMode"/>
+				<GameType value="CustomGame"/>
+				<GameType value="EditorGame"/>
+			</IncludedGameTypes>
+		</XmlNode>
+	</Xmls>
+</Module>
