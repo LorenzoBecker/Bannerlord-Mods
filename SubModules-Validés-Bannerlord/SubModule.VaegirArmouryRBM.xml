@@ -1,0 +1,33 @@
+<Module>
+	<Name value="Vaegir Armoury RBM"/>
+	<Id value="VaegirArmouryRBM"/>
+	<Version value="v2.1.0.0"/>
+	<DefaultModule value="false"/>
+	<ModuleCategory value="Singleplayer"/>
+	<Official value="false"/>
+	<DependedModules>
+		<DependedModule Id="Native"/>
+		<DependedModule Id="SandBoxCore"/>
+		<DependedModule Id="Sandbox"/>
+		<DependedModule Id="CustomBattle"/>
+		<DependedModule Id="StoryMode"/>
+		<DependedModule Id="RBM"/>
+		<DependedModule Id="Vaegir Armoury"/>
+	</DependedModules>
+	<DependedModuleMetadatas>
+		<DependedModuleMetadata id="RBM" order="LoadBeforeThis"/>
+		<DependedModuleMetadata id="Vaegir Armoury" order="LoadBeforeThis"/>		
+	</DependedModuleMetadatas>
+	<SubModules/>
+	<Xmls>
+		<XmlNode>
+			<XmlName id="Items" path="items"/>
+			<IncludedGameTypes>
+				<GameType value="Campaign"/>
+				<GameType value="CampaignStoryMode"/>
+				<GameType value="CustomGame"/>
+				<GameType value="EditorGame"/>
+			</IncludedGameTypes>
+		</XmlNode>
+	</Xmls>
+</Module>

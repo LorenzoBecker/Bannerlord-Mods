@@ -1,0 +1,23 @@
+ <Module>
+     <Name value="UnlimitedCAP"/>
+     <Id value="UnlimitedCAP"/>
+     <Version value="v2.1.0"/>
+     <SingleplayerModule value="true"/>
+     <MultiplayerModule value="false"/>
+     <DependedModules>
+         <DependedModule Id="Bannerlord.Harmony" />
+         <DependedModule Id="Bannerlord.MBOptionScreen" />
+     </DependedModules>
+     <SubModules>
+         <SubModule>
+             <Name value="UnlimitedCAP"/>
+             <DLLName value="UnlimitedCAP.dll"/>
+             <SubModuleClassType value="UnlimitedCAP.MainSub"/>
+             <Tags>
+                 <Tag key="DedicatedServerType" value="none" />
+                 <Tag key="IsNoRenderModeElement" value="false" />
+             </Tags>
+         </SubModule>
+    </SubModules>
+    <Xmls/>
+ </Module>

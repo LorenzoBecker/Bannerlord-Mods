@@ -1,0 +1,493 @@
+<Module>
+	<Name value="WarlordsBattlefield"/>
+	<Id value="WarlordsBattlefield"/>
+	<Version value="e1.1.2"/>
+	<ModuleCategory value="Singleplayer"/>
+	<SingleplayerModule value="true" />
+	<DefaultModule value="false"/>
+	<ModuleType value ="Community" />
+	<DependedModules>
+		<DependedModule Id="Native" DependentVersion="e1.2.0" Optional="false"/>
+	</DependedModules>
+	<SubModules/>
+	<Xmls>
+		<!-- ************************************************** Major Items ************************************************** -->
+		<XmlNode>
+			<XmlName id="Items" path="items_sexy_name"/>
+			<IncludedGameTypes>
+				<GameType value="Campaign"/>
+				<GameType value="CampaignStoryMode"/>
+			</IncludedGameTypes>
+		</XmlNode>
+		<XmlNode>
+			<XmlName id="Items" path="items_aserai"/>
+			<IncludedGameTypes>
+				<GameType value="Campaign"/>
+				<GameType value="CampaignStoryMode"/>
+			</IncludedGameTypes>
+		</XmlNode>
+		<XmlNode>
+			<XmlName id="Items" path="items_battania"/>
+			<IncludedGameTypes>
+				<GameType value="Campaign"/>
+				<GameType value="CampaignStoryMode"/>
+			</IncludedGameTypes>
+		</XmlNode>
+		<XmlNode>
+			<XmlName id="Items" path="items_empire"/>
+			<IncludedGameTypes>
+				<GameType value="Campaign"/>
+				<GameType value="CampaignStoryMode"/>
+			</IncludedGameTypes>
+		</XmlNode>
+		<XmlNode>
+			<XmlName id="Items" path="items_khuzait"/>
+			<IncludedGameTypes>
+				<GameType value="Campaign"/>
+				<GameType value="CampaignStoryMode"/>
+			</IncludedGameTypes>
+		</XmlNode>
+		<XmlNode>
+			<XmlName id="Items" path="items_lake"/>
+			<IncludedGameTypes>
+				<GameType value="Campaign"/>
+				<GameType value="CampaignStoryMode"/>
+			</IncludedGameTypes>
+		</XmlNode>
+		<XmlNode>
+			<XmlName id="Items" path="items_nord"/>
+			<IncludedGameTypes>
+				<GameType value="Campaign"/>
+				<GameType value="CampaignStoryMode"/>
+			</IncludedGameTypes>
+		</XmlNode>
+		<XmlNode>
+			<XmlName id="Items" path="items_rhodok"/>
+			<IncludedGameTypes>
+				<GameType value="Campaign"/>
+				<GameType value="CampaignStoryMode"/>
+			</IncludedGameTypes>
+		</XmlNode>
+		<XmlNode>
+			<XmlName id="Items" path="items_sturgia"/>
+			<IncludedGameTypes>
+				<GameType value="Campaign"/>
+				<GameType value="CampaignStoryMode"/>
+			</IncludedGameTypes>
+		</XmlNode>
+		<XmlNode>
+			<XmlName id="Items" path="items_vlandia"/>
+			<IncludedGameTypes>
+				<GameType value="Campaign"/>
+				<GameType value="CampaignStoryMode"/>
+			</IncludedGameTypes>
+		</XmlNode>
+		<!-- ************************************************** Outlaw Items ************************************************** -->
+		<XmlNode>
+			<XmlName id="Items" path="items_outlaw"/>
+			<IncludedGameTypes>
+				<GameType value="Campaign"/>
+				<GameType value="CampaignStoryMode"/>
+			</IncludedGameTypes>
+		</XmlNode>
+		<!-- ************************************************** Speacial Items ************************************************** -->
+		<XmlNode>
+			<XmlName id="Items" path="items_special"/>
+			<IncludedGameTypes>
+				<GameType value="Campaign"/>
+				<GameType value="CampaignStoryMode"/>
+			</IncludedGameTypes>
+		</XmlNode>
+		<!-- ************************************************** Major Armies ************************************************** -->
+		<XmlNode>
+			<XmlName id="NPCCharacters" path="major_army_aserai"/>
+			<IncludedGameTypes>
+				<GameType value="Campaign"/>
+				<GameType value="CampaignStoryMode"/>
+			</IncludedGameTypes>
+		</XmlNode>
+		<XmlNode>
+			<XmlName id="NPCCharacters" path="major_army_battania"/>
+			<IncludedGameTypes>
+				<GameType value="Campaign"/>
+				<GameType value="CampaignStoryMode"/>
+			</IncludedGameTypes>
+		</XmlNode>
+		<XmlNode>
+			<XmlName id="NPCCharacters" path="major_army_empire"/>
+			<IncludedGameTypes>
+				<GameType value="Campaign"/>
+				<GameType value="CampaignStoryMode"/>
+			</IncludedGameTypes>
+		</XmlNode>
+		<XmlNode>
+			<XmlName id="NPCCharacters" path="major_army_khuzait"/>
+			<IncludedGameTypes>
+				<GameType value="Campaign"/>
+				<GameType value="CampaignStoryMode"/>
+			</IncludedGameTypes>
+		</XmlNode>
+		<XmlNode>
+			<XmlName id="NPCCharacters" path="major_army_sturgia"/>
+			<IncludedGameTypes>
+				<GameType value="Campaign"/>
+				<GameType value="CampaignStoryMode"/>
+			</IncludedGameTypes>
+		</XmlNode>
+		<XmlNode>
+			<XmlName id="NPCCharacters" path="major_army_vlandia"/>
+			<IncludedGameTypes>
+				<GameType value="Campaign"/>
+				<GameType value="CampaignStoryMode"/>
+			</IncludedGameTypes>
+		</XmlNode>
+		<!-- ************************************************** Minor Armies ************************************************** -->
+		<XmlNode>
+			<XmlName id="NPCCharacters" path="minor_army_aserai_bedouin"/>
+			<IncludedGameTypes>
+				<GameType value="Campaign"/>
+				<GameType value="CampaignStoryMode"/>
+			</IncludedGameTypes>
+		</XmlNode>
+		<XmlNode>
+			<XmlName id="NPCCharacters" path="minor_army_aserai_ghilmen"/>
+			<IncludedGameTypes>
+				<GameType value="Campaign"/>
+				<GameType value="CampaignStoryMode"/>
+			</IncludedGameTypes>
+		</XmlNode>
+		<XmlNode>
+			<XmlName id="NPCCharacters" path="minor_army_aserai_jawwal"/>
+			<IncludedGameTypes>
+				<GameType value="Campaign"/>
+				<GameType value="CampaignStoryMode"/>
+			</IncludedGameTypes>
+		</XmlNode>
+		<XmlNode>
+			<XmlName id="NPCCharacters" path="minor_army_aserai_sarranid"/>
+			<IncludedGameTypes>
+				<GameType value="Campaign"/>
+				<GameType value="CampaignStoryMode"/>
+			</IncludedGameTypes>
+		</XmlNode>
+		<XmlNode>
+			<XmlName id="NPCCharacters" path="minor_army_aserai_zilal"/>
+			<IncludedGameTypes>
+				<GameType value="Campaign"/>
+				<GameType value="CampaignStoryMode"/>
+			</IncludedGameTypes>
+		</XmlNode>
+		<XmlNode>
+			<XmlName id="NPCCharacters" path="minor_army_battania_dryads"/>
+			<IncludedGameTypes>
+				<GameType value="Campaign"/>
+				<GameType value="CampaignStoryMode"/>
+			</IncludedGameTypes>
+		</XmlNode>
+		<XmlNode>
+			<XmlName id="NPCCharacters" path="minor_army_battania_hillmen"/>
+			<IncludedGameTypes>
+				<GameType value="Campaign"/>
+				<GameType value="CampaignStoryMode"/>
+			</IncludedGameTypes>
+		</XmlNode>
+		<XmlNode>
+			<XmlName id="NPCCharacters" path="minor_army_battania_forest_people"/>
+			<IncludedGameTypes>
+				<GameType value="Campaign"/>
+				<GameType value="CampaignStoryMode"/>
+			</IncludedGameTypes>
+		</XmlNode>
+		<XmlNode>
+			<XmlName id="NPCCharacters" path="minor_army_battania_wolfskin"/>
+			<IncludedGameTypes>
+				<GameType value="Campaign"/>
+				<GameType value="CampaignStoryMode"/>
+			</IncludedGameTypes>
+		</XmlNode>
+		<XmlNode>
+			<XmlName id="NPCCharacters" path="minor_army_battania_woodsmen"/>
+			<IncludedGameTypes>
+				<GameType value="Campaign"/>
+				<GameType value="CampaignStoryMode"/>
+			</IncludedGameTypes>
+		</XmlNode>
+		<XmlNode>
+			<XmlName id="NPCCharacters" path="minor_army_empire_eleftheroi"/>
+			<IncludedGameTypes>
+				<GameType value="Campaign"/>
+				<GameType value="CampaignStoryMode"/>
+			</IncludedGameTypes>
+		</XmlNode>
+		<XmlNode>
+			<XmlName id="NPCCharacters" path="minor_army_empire_embers_of_the_flame"/>
+			<IncludedGameTypes>
+				<GameType value="Campaign"/>
+				<GameType value="CampaignStoryMode"/>
+			</IncludedGameTypes>
+		</XmlNode>
+		<XmlNode>
+			<XmlName id="NPCCharacters" path="minor_army_empire_hidden_hand"/>
+			<IncludedGameTypes>
+				<GameType value="Campaign"/>
+				<GameType value="CampaignStoryMode"/>
+			</IncludedGameTypes>
+		</XmlNode>
+		<XmlNode>
+			<XmlName id="NPCCharacters" path="minor_army_empire_legion_of_the_betrayed"/>
+			<IncludedGameTypes>
+				<GameType value="Campaign"/>
+				<GameType value="CampaignStoryMode"/>
+			</IncludedGameTypes>
+		</XmlNode>
+		<XmlNode>
+			<XmlName id="NPCCharacters" path="minor_army_khuzait_black_khergit"/>
+			<IncludedGameTypes>
+				<GameType value="Campaign"/>
+				<GameType value="CampaignStoryMode"/>
+			</IncludedGameTypes>
+		</XmlNode>
+		<XmlNode>
+			<XmlName id="NPCCharacters" path="minor_army_khuzait_darkhan"/>
+			<IncludedGameTypes>
+				<GameType value="Campaign"/>
+				<GameType value="CampaignStoryMode"/>
+			</IncludedGameTypes>
+		</XmlNode>
+		<XmlNode>
+			<XmlName id="NPCCharacters" path="minor_army_khuzait_karakhergit"/>
+			<IncludedGameTypes>
+				<GameType value="Campaign"/>
+				<GameType value="CampaignStoryMode"/>
+			</IncludedGameTypes>
+		</XmlNode>
+		<XmlNode>
+			<XmlName id="NPCCharacters" path="minor_army_khuzait_karakhuzait"/>
+			<IncludedGameTypes>
+				<GameType value="Campaign"/>
+				<GameType value="CampaignStoryMode"/>
+			</IncludedGameTypes>
+		</XmlNode>
+		<XmlNode>
+			<XmlName id="NPCCharacters" path="minor_army_sturgia_lake_rat"/>
+			<IncludedGameTypes>
+				<GameType value="Campaign"/>
+				<GameType value="CampaignStoryMode"/>
+			</IncludedGameTypes>
+		</XmlNode>
+		<XmlNode>
+			<XmlName id="NPCCharacters" path="minor_army_sturgia_nord"/>
+			<IncludedGameTypes>
+				<GameType value="Campaign"/>
+				<GameType value="CampaignStoryMode"/>
+			</IncludedGameTypes>
+		</XmlNode>
+		<XmlNode>
+			<XmlName id="NPCCharacters" path="minor_army_sturgia_skolderbrotva"/>
+			<IncludedGameTypes>
+				<GameType value="Campaign"/>
+				<GameType value="CampaignStoryMode"/>
+			</IncludedGameTypes>
+		</XmlNode>
+		<XmlNode>
+			<XmlName id="NPCCharacters" path="minor_army_sturgia_vaagir"/>
+			<IncludedGameTypes>
+				<GameType value="Campaign"/>
+				<GameType value="CampaignStoryMode"/>
+			</IncludedGameTypes>
+		</XmlNode>
+		<XmlNode>
+			<XmlName id="NPCCharacters" path="minor_army_sturgia_valkyrie"/>
+			<IncludedGameTypes>
+				<GameType value="Campaign"/>
+				<GameType value="CampaignStoryMode"/>
+			</IncludedGameTypes>
+		</XmlNode>
+		<XmlNode>
+			<XmlName id="NPCCharacters" path="minor_army_vlandia_brotherhood_of_the_woods"/>
+			<IncludedGameTypes>
+				<GameType value="Campaign"/>
+				<GameType value="CampaignStoryMode"/>
+			</IncludedGameTypes>
+		</XmlNode>
+		<XmlNode>
+			<XmlName id="NPCCharacters" path="minor_army_vlandia_company_of_the_golden_boar"/>
+			<IncludedGameTypes>
+				<GameType value="Campaign"/>
+				<GameType value="CampaignStoryMode"/>
+			</IncludedGameTypes>
+		</XmlNode>
+		<XmlNode>
+			<XmlName id="NPCCharacters" path="minor_army_vlandia_iron_arm_order"/>
+			<IncludedGameTypes>
+				<GameType value="Campaign"/>
+				<GameType value="CampaignStoryMode"/>
+			</IncludedGameTypes>
+		</XmlNode>
+		<XmlNode>
+			<XmlName id="NPCCharacters" path="minor_army_vlandia_rhodok"/>
+			<IncludedGameTypes>
+				<GameType value="Campaign"/>
+				<GameType value="CampaignStoryMode"/>
+			</IncludedGameTypes>
+		</XmlNode>
+		<!-- ************************************************** Outlaw Armies ************************************************** -->
+		<XmlNode>
+			<XmlName id="NPCCharacters" path="outlaw_army"/>
+			<IncludedGameTypes>
+				<GameType value="Campaign"/>
+				<GameType value="CampaignStoryMode"/>
+			</IncludedGameTypes>
+		</XmlNode>
+		<!-- ************************************************** Major Party Templates ************************************************** -->
+		<XmlNode>
+			<XmlName id="partyTemplates" path="branch_aserai"/>
+			<IncludedGameTypes>
+				<GameType value="Campaign"/>
+				<GameType value="CampaignStoryMode"/>
+			</IncludedGameTypes>
+		</XmlNode>
+		<XmlNode>
+			<XmlName id="partyTemplates" path="branch_battania"/>
+			<IncludedGameTypes>
+				<GameType value="Campaign"/>
+				<GameType value="CampaignStoryMode"/>
+			</IncludedGameTypes>
+		</XmlNode>
+		<XmlNode>
+			<XmlName id="partyTemplates" path="branch_empire"/>
+			<IncludedGameTypes>
+				<GameType value="Campaign"/>
+				<GameType value="CampaignStoryMode"/>
+			</IncludedGameTypes>
+		</XmlNode>
+		<XmlNode>
+			<XmlName id="partyTemplates" path="branch_khuzait"/>
+			<IncludedGameTypes>
+				<GameType value="Campaign"/>
+				<GameType value="CampaignStoryMode"/>
+			</IncludedGameTypes>
+		</XmlNode>
+		<XmlNode>
+			<XmlName id="partyTemplates" path="branch_sturgia"/>
+			<IncludedGameTypes>
+				<GameType value="Campaign"/>
+				<GameType value="CampaignStoryMode"/>
+			</IncludedGameTypes>
+		</XmlNode>
+		<XmlNode>
+			<XmlName id="partyTemplates" path="branch_vlandia"/>
+			<IncludedGameTypes>
+				<GameType value="Campaign"/>
+				<GameType value="CampaignStoryMode"/>
+			</IncludedGameTypes>
+		</XmlNode>
+		<!-- ************************************************** Outlaw Party Templates ************************************************** -->
+		<XmlNode>
+			<XmlName id="partyTemplates" path="branch_outlaw"/>
+			<IncludedGameTypes>
+				<GameType value="Campaign"/>
+				<GameType value="CampaignStoryMode"/>
+			</IncludedGameTypes>
+		</XmlNode>
+		<!-- ************************************************** Major Kingdoms ************************************************** -->
+		<XmlNode>
+		    <XmlName id="Kingdoms" path="kingdom"/>
+            <IncludedGameTypes>
+				<GameType value = "Campaign"/>
+				<GameType value = "CampaignStoryMode"/>
+			</IncludedGameTypes>
+		</XmlNode>
+		<!-- ************************************************** Major Clans ************************************************** -->
+		<!-- ************************************************** Minor Clans ************************************************** -->
+		<XmlNode>
+			<XmlName id="Factions" path="clan_minor"/>
+			<IncludedGameTypes>
+				<GameType value = "Campaign"/>
+				<GameType value = "CampaignStoryMode"/>
+			</IncludedGameTypes>
+		</XmlNode>
+		<!-- ************************************************** Major Cultures ************************************************** -->
+		<XmlNode>
+			<XmlName id="SPCultures" path="culture_aserai"/>
+			<IncludedGameTypes>
+				<GameType value="Campaign"/>
+				<GameType value="CampaignStoryMode"/>
+			</IncludedGameTypes>
+		</XmlNode>
+		<XmlNode>
+			<XmlName id="SPCultures" path="culture_battania"/>
+			<IncludedGameTypes>
+				<GameType value="Campaign"/>
+				<GameType value="CampaignStoryMode"/>
+			</IncludedGameTypes>
+		</XmlNode>
+		<XmlNode>
+			<XmlName id="SPCultures" path="culture_empire"/>
+			<IncludedGameTypes>
+				<GameType value="Campaign"/>
+				<GameType value="CampaignStoryMode"/>
+			</IncludedGameTypes>
+		</XmlNode>
+		<XmlNode>
+			<XmlName id="SPCultures" path="culture_khuzait"/>
+			<IncludedGameTypes>
+				<GameType value="Campaign"/>
+				<GameType value="CampaignStoryMode"/>
+			</IncludedGameTypes>
+		</XmlNode>
+		<XmlNode>
+			<XmlName id="SPCultures" path="culture_sturgia"/>
+			<IncludedGameTypes>
+				<GameType value="Campaign"/>
+				<GameType value="CampaignStoryMode"/>
+			</IncludedGameTypes>
+		</XmlNode>
+		<XmlNode>
+			<XmlName id="SPCultures" path="culture_vlandia"/>
+			<IncludedGameTypes>
+				<GameType value="Campaign"/>
+				<GameType value="CampaignStoryMode"/>
+			</IncludedGameTypes>
+		</XmlNode>
+		<!-- ************************************************** Minor Cultures ************************************************** -->
+		<XmlNode>
+			<XmlName id="SPCultures" path="culture_minor"/>
+			<IncludedGameTypes>
+				<GameType value="Campaign"/>
+				<GameType value="CampaignStoryMode"/>
+			</IncludedGameTypes>
+		</XmlNode>
+		<!-- ************************************************** Outlaw Cultures ************************************************** -->
+		<XmlNode>
+			<XmlName id="SPCultures" path="culture_outlaw"/>
+			<IncludedGameTypes>
+				<GameType value="Campaign"/>
+				<GameType value="CampaignStoryMode"/>
+			</IncludedGameTypes>
+		</XmlNode>
+		<!-- ************************************************** Characters Special ************************************************** -->
+		<XmlNode>
+			<XmlName id="NPCCharacters" path="characters_special_caravan_master"/>
+			<IncludedGameTypes>
+				<GameType value="Campaign"/>
+				<GameType value="CampaignStoryMode"/>
+			</IncludedGameTypes>
+		</XmlNode>
+		<XmlNode>
+			<XmlName id="NPCCharacters" path="characters_special_minor_leader"/>
+			<IncludedGameTypes>
+				<GameType value = "Campaign"/>
+				<GameType value = "CampaignStoryMode"/>
+			</IncludedGameTypes>
+		</XmlNode>
+		<!-- ************************************************** Special ************************************************** -->
+		<XmlNode>
+        <XmlName id="NPCCharacters" path="hide_base_units"/>
+            <IncludedGameTypes>
+                <GameType value="Campaign"/>
+                <GameType value="CampaignStoryMode"/>
+            </IncludedGameTypes>
+        </XmlNode>
+	</Xmls>
+</Module>

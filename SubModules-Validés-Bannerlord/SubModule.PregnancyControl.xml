@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Module>
+	<Name value = "PregnancyControlContinued"/>
+	<Id value = "PregnancyControl"/>
+	<Version value = "v1.2.9"/>
+	<SingleplayerModule value = "true"/>
+	<MultiplayerModule value = "false"/>
+	
+    <DependedModules>
+		<DependedModule Id="Native" />
+		<DependedModule Id="SandBoxCore" />
+		<DependedModule Id="Sandbox" />
+		<DependedModule Id="CustomBattle" />
+		<DependedModule Id="StoryMode" />
+        <DependedModule Id="Bannerlord.Harmony" />
+		<DependedModule Id="HotButter" />
+		<DependedModule Id="HotButterFix" />
+    </DependedModules>
+
+	<SubModules>
+		<SubModule>
+			<Name value = "PregnancyControl"/>
+			<DLLName value = "PregnancyControl.dll"/>
+			<SubModuleClassType value = "PregnancyControl.CheyronPregnancyControlSubModule"/>			
+			<Tags>
+				<Tag key = "DedicatedServerType" value ="none"/>
+			</Tags>
+		</SubModule>
+	</SubModules>
+</Module>

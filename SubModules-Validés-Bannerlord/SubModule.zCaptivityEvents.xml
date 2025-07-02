@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Module>
+  <Name value="Captivity Events" />
+  <Id value="zCaptivityEvents" />
+  <Version value="v1.2.11.1122" />
+  <SingleplayerModule value="true" />
+  <MultiplayerModule value="false" />
+  <DependedModules>
+    <DependedModule Id="Native" DependentVersion="v1.2.11" />
+    <DependedModule Id="SandBoxCore" DependentVersion="v1.2.11" />
+    <DependedModule Id="Sandbox" DependentVersion="v1.2.11" />
+    <DependedModule Id="CustomBattle" DependentVersion="v1.2.11" />
+    <DependedModule Id="StoryMode" DependentVersion="v1.2.1" />
+    <DependedModule Id="Bannerlord.MBOptionScreen" DependentVersion="v5.10.2" Optional="true"/>
+  </DependedModules>
+
+  <SubModules>
+    <SubModule>
+      <Name value="Captivity Events" />
+      <DLLName value="CaptivityEvents.dll" />
+      <SubModuleClassType value="CaptivityEvents.CESubModule" />
+      <Tags>  
+        <Tag key="DedicatedServerType" value="none" />
+        <Tag key="IsNoRenderModeElement" value="false" />
+      </Tags>
+    </SubModule>
+  </SubModules>
+  <Xmls>
+    <XmlNode>
+      <XmlName id="GameText" path="module_strings"/>
+      <IncludedGameTypes>
+        <GameType value = "Campaign"/>
+        <GameType value = "CampaignStoryMode"/>
+      </IncludedGameTypes>
+    </XmlNode>
+  </Xmls>
+</Module>

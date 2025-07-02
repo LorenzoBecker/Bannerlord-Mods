@@ -1,0 +1,41 @@
+﻿<Module>
+  <Name value="Simple Bank"/>
+  <Id value="SimpleBank"/>
+  <Version value="v1.2.12.0"/>
+  <SingleplayerModule value="true"/>
+  <MultiplayerModule value="false"/>
+  <DependedModules>
+    <DependedModule DependentVersion="v1.2.12" Id="Native"/>
+    <DependedModule DependentVersion="v1.2.12" Id="SandBoxCore"/>
+    <DependedModule DependentVersion="v1.2.12" Id="Sandbox"/>
+    <DependedModule DependentVersion="v1.2.12" Id="CustomBattle"/>
+    <DependedModule DependentVersion="v1.2.12" Id="StoryMode" />
+  </DependedModules>
+  <SubModules>
+    <SubModule>
+      <Name value="BirkeCityBank"/>
+      <DLLName value="SimpleBank.dll"/>
+      <SubModuleClassType value="Birke.BirkeCityBank"/>
+      <Tags>
+        <Tag key="DedicatedServerType" value="none" />
+        <Tag key="IsNoRenderModeElement" value="false" />
+      </Tags>
+    </SubModule>
+  </SubModules>
+  <Xmls>
+    <XmlNode>
+      <XmlName id="Concepts" path="concept_strings"/>
+      <IncludedGameTypes>
+        <GameType value = "Campaign"/>
+        <GameType value = "CampaignStoryMode"/>
+      </IncludedGameTypes>
+    </XmlNode>
+	<XmlNode>
+		<XmlName id="GameText" path="module_strings"/>
+		<IncludedGameTypes>
+			<GameType value = "Campaign"/>
+			<GameType value = "CampaignStoryMode"/>
+		</IncludedGameTypes>
+	</XmlNode>
+  </Xmls >
+</Module>
