@@ -1,6 +1,11 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using System.Threading.Tasks;
 using HarmonyLib;
 using SemanticVersioning;
 using SPTarkov.DI.Annotations;
@@ -64,7 +69,11 @@ public sealed class AllBossesEverywhereMod : IOnLoad
         }
 
         harmony.Patch(original, postfix: new HarmonyMethod(postfix));
-        _logger.Success($"[All Bosses Everywhere] v2.1.0 chargé. {Templates.Count} modèles disponibles. Maximum additionnel: {Config.MaximumAdditionalBossesPerRaid}.");
+        _logger.Success(
+            $"[All Bosses Everywhere] v2.1.0 chargé. " +
+            $"{Templates.Count} modèles disponibles. " +
+            $"Maximum additionnel configurable: {Config.MaximumAdditionalBossesPerRaid}."
+        );
         return Task.CompletedTask;
     }
 
@@ -74,10 +83,14 @@ public sealed class AllBossesEverywhereMod : IOnLoad
         {
             var directory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)!;
             var path = Path.Combine(directory, "config.json");
-            if (!File.Exists(path))
-                File.WriteAllText(path, JsonSerializer.Serialize(ModConfig.CreateDefault(), JsonOptions.Write));
 
-            Config = JsonSerializer.Deserialize<ModConfig>(File.ReadAllText(path), JsonOptions.Read) ?? ModConfig.CreateDefault();
+            if (!File.Exists(path))
+            {
+                File.WriteAllText(path, JsonSerializer.Serialize(ModConfig.CreateDefault(), JsonOptions.Write));
+            }
+
+            Config = JsonSerializer.Deserialize<ModConfig>(File.ReadAllText(path), JsonOptions.Read)
+                     ?? ModConfig.CreateDefault();
             Config.Normalize(_logger);
         }
         catch (Exception ex)
@@ -90,15 +103,29 @@ public sealed class AllBossesEverywhereMod : IOnLoad
     private void CacheBossTemplates()
     {
         Templates.Clear();
+
         foreach (var bossConfig in Config.Bosses.Where(x => x.Enabled))
         {
             var location = _databaseService.GetLocation(bossConfig.SourceMap);
             var locationBase = GetLocationBase(location);
-            var template = locationBase?.BossLocationSpawn?.FirstOrDefault(x => string.Equals(x.BossName, bossConfig.Role, StringComparison.OrdinalIgnoreCase));
+
+            if (locationBase?.BossLocationSpawn is null)
+            {
+                _logger.Warning(
+                    $"[All Bosses Everywhere] Carte source '{bossConfig.SourceMap}' indisponible pour {bossConfig.Role}."
+                );
+                continue;
+            }
+
+            var template = locationBase.BossLocationSpawn.FirstOrDefault(
+                x => string.Equals(x.BossName, bossConfig.Role, StringComparison.OrdinalIgnoreCase)
+            );
 
             if (template is null)
             {
-                _logger.Warning($"[All Bosses Everywhere] Modèle '{bossConfig.Role}' introuvable sur '{bossConfig.SourceMap}'.");
+                _logger.Warning(
+                    $"[All Bosses Everywhere] Modèle '{bossConfig.Role}' introuvable sur '{bossConfig.SourceMap}'."
+                );
                 continue;
             }
 
@@ -109,7 +136,8 @@ public sealed class AllBossesEverywhereMod : IOnLoad
     private static LocationBase? GetLocationBase(object? location)
     {
         if (location is null) return null;
-        return location.GetType().GetProperty("Base", BindingFlags.Public | BindingFlags.Instance)?.GetValue(location) as LocationBase;
+        var property = location.GetType().GetProperty("Base", BindingFlags.Public | BindingFlags.Instance);
+        return property?.GetValue(location) as LocationBase;
     }
 
     internal static BossLocationSpawn DeepClone(BossLocationSpawn source)
@@ -131,12 +159,15 @@ internal static class StartLocalRaidPatch
                 return;
 
             var map = NormalizeMapId(request.Location ?? __result.LocationLoot.Id);
-            if (!config.Maps.TryGetValue(map, out var mapConfig) || !mapConfig.Enabled)
+
+            if (!config.Maps.TryGetValue(map, out var activeMapConfig) || !activeMapConfig.Enabled)
                 return;
+
             if (!config.EnableLabs && map.Equals("laboratory", StringComparison.OrdinalIgnoreCase))
                 return;
 
             var spawns = __result.LocationLoot.BossLocationSpawn ??= new List<BossLocationSpawn>();
+
             var alreadyPresent = spawns
                 .Where(x => (x.BossChance ?? 0) > 0 && !string.IsNullOrWhiteSpace(x.BossName))
                 .Select(x => x.BossName!)
@@ -164,15 +195,22 @@ internal static class StartLocalRaidPatch
             {
                 var totalChance = Math.Min(100.0, candidates.Sum(x => x.Chance));
                 var roll = AllBossesEverywhereMod.Rng.NextDouble() * 100.0;
+
                 if (roll >= totalChance)
                 {
                     if (config.DebugLogging)
-                        AllBossesEverywhereMod.Logger?.Info($"[All Bosses Everywhere] {map}: slot {slot + 1}, aucun boss (jet {roll:F2} / {totalChance:F2}%).");
+                    {
+                        AllBossesEverywhereMod.Logger?.Info(
+                            $"[All Bosses Everywhere] {map}: slot {slot + 1}, aucun boss " +
+                            $"(jet {roll:F2} / {totalChance:F2}%)."
+                        );
+                    }
                     break;
                 }
 
                 Candidate? selected = null;
                 var cursor = 0.0;
+
                 foreach (var candidate in candidates)
                 {
                     cursor += candidate.Chance;
@@ -182,19 +220,27 @@ internal static class StartLocalRaidPatch
                         break;
                     }
                 }
-                if (selected is null) break;
+
+                if (selected is null)
+                    break;
 
                 var zones = BuildZonePool(__result.LocationLoot, map, selected.Config.Role, config);
                 if (zones.Count == 0)
                 {
-                    AllBossesEverywhereMod.Logger?.Warning($"[All Bosses Everywhere] {map}: aucune zone valide pour {selected.Config.DisplayName}; candidat ignoré.");
+                    AllBossesEverywhereMod.Logger?.Warning(
+                        $"[All Bosses Everywhere] {map}: aucune zone valide pour {selected.Config.DisplayName}; candidat ignoré."
+                    );
                     candidates.Remove(selected);
                     slot--;
                     continue;
                 }
 
                 var zone = zones[AllBossesEverywhereMod.Rng.Next(zones.Count)];
-                var boss = AllBossesEverywhereMod.DeepClone(AllBossesEverywhereMod.Templates[selected.Config.Role]);
+
+                var boss = AllBossesEverywhereMod.DeepClone(
+                    AllBossesEverywhereMod.Templates[selected.Config.Role]
+                );
+
                 boss.BossChance = 100;
                 boss.BossZone = zone;
                 boss.Time = selected.Config.SpawnTime;
@@ -208,15 +254,25 @@ internal static class StartLocalRaidPatch
                 candidates.Remove(selected);
                 added++;
 
-                AllBossesEverywhereMod.Logger?.Success($"[All Bosses Everywhere] {map}: {selected.Config.DisplayName} ajouté (chance {selected.Chance:F1} %, zone '{zone}', slot {added}/{maxToAdd}).");
+                AllBossesEverywhereMod.Logger?.Success(
+                    $"[All Bosses Everywhere] {map}: {selected.Config.DisplayName} ajouté " +
+                    $"(chance effective {selected.Chance:F1} %, zone '{zone}', slot {added}/{maxToAdd})."
+                );
             }
 
             if (config.DebugLogging)
-                AllBossesEverywhereMod.Logger?.Info($"[All Bosses Everywhere] {map}: {added} boss additionnel(s) ajouté(s), maximum {config.MaximumAdditionalBossesPerRaid}.");
+            {
+                AllBossesEverywhereMod.Logger?.Info(
+                    $"[All Bosses Everywhere] {map}: {added} boss additionnel(s) ajouté(s), " +
+                    $"maximum configuré {config.MaximumAdditionalBossesPerRaid}."
+                );
+            }
         }
         catch (Exception ex)
         {
-            AllBossesEverywhereMod.Logger?.Error($"[All Bosses Everywhere] Erreur pendant la génération du raid: {ex}");
+            AllBossesEverywhereMod.Logger?.Error(
+                $"[All Bosses Everywhere] Erreur pendant la génération du raid: {ex}"
+            );
         }
     }
 
@@ -227,46 +283,76 @@ internal static class StartLocalRaidPatch
             .Distinct(StringComparer.OrdinalIgnoreCase)
             .ToList();
 
-        if (config.BossZoneOverrides.TryGetValue(map, out var byBoss)
-            && byBoss.TryGetValue(role, out var specific)
-            && specific.Count > 0)
-            return ValidateExplicitZones(specific, openZones, map, role, config);
+        // Priority 1: zones explicitly assigned to this boss on this map.
+        if (config.BossZoneOverrides.TryGetValue(map, out var mapBossZones)
+            && mapBossZones.TryGetValue(role, out var specificZones)
+            && specificZones.Count > 0)
+        {
+            return ValidateExplicitZones(specificZones, openZones, map, role, config);
+        }
 
-        if (config.Maps.TryGetValue(map, out var mapConfig) && mapConfig.GeneralZones.Count > 0)
+        // Priority 2: general zones explicitly assigned to this map.
+        if (config.Maps.TryGetValue(map, out var mapConfig)
+            && mapConfig.GeneralZones.Count > 0)
+        {
             return ValidateExplicitZones(mapConfig.GeneralZones, openZones, map, role, config);
+        }
 
+        // Factory uses its canonical shared bot zone.
         if (map is "factory4_day" or "factory4_night")
             return new List<string> { "BotZone" };
 
-        var excluded = mapConfig?.ExcludedZones ?? new List<string>();
+        // Priority 3: all valid OpenZones from the map.
+        var excludedZones = mapConfig?.ExcludedZones ?? new List<string>();
+
         return openZones
-            .Where(x => !config.ExcludedZoneNameFragments.Any(fragment => !string.IsNullOrWhiteSpace(fragment) && x.Contains(fragment, StringComparison.OrdinalIgnoreCase)))
-            .Where(x => !excluded.Contains(x, StringComparer.OrdinalIgnoreCase))
+            .Where(x => !config.ExcludedZoneNameFragments.Any(fragment =>
+                !string.IsNullOrWhiteSpace(fragment)
+                && x.Contains(fragment, StringComparison.OrdinalIgnoreCase)))
+            .Where(x => !excludedZones.Contains(x, StringComparer.OrdinalIgnoreCase))
             .ToList();
     }
 
-    private static List<string> ValidateExplicitZones(IEnumerable<string> requested, List<string> openZones, string map, string role, ModConfig config)
+    private static List<string> ValidateExplicitZones(
+        IEnumerable<string> requestedZones,
+        List<string> openZones,
+        string map,
+        string role,
+        ModConfig config)
     {
         var result = new List<string>();
-        foreach (var zone in requested.Where(x => !string.IsNullOrWhiteSpace(x)).Distinct(StringComparer.OrdinalIgnoreCase))
+
+        foreach (var zone in requestedZones
+                     .Where(x => !string.IsNullOrWhiteSpace(x))
+                     .Distinct(StringComparer.OrdinalIgnoreCase))
         {
-            var excluded = config.Maps.TryGetValue(map, out var mapConfig)
-                           && mapConfig.ExcludedZones.Contains(zone, StringComparer.OrdinalIgnoreCase);
-            if (excluded)
+            var explicitlyExcluded = config.Maps.TryGetValue(map, out var mapConfig)
+                                     && mapConfig.ExcludedZones.Contains(zone, StringComparer.OrdinalIgnoreCase);
+
+            if (explicitlyExcluded)
             {
-                AllBossesEverywhereMod.Logger?.Warning($"[All Bosses Everywhere] {map}/{role}: zone '{zone}' exclue par la configuration.");
+                AllBossesEverywhereMod.Logger?.Warning(
+                    $"[All Bosses Everywhere] {map}/{role}: zone '{zone}' exclue par la configuration."
+                );
                 continue;
             }
 
+            // BotZone is valid for Factory even when absent from OpenZones.
             var factoryBotZone = map is "factory4_day" or "factory4_night"
                                  && zone.Equals("BotZone", StringComparison.OrdinalIgnoreCase);
-            if (!factoryBotZone && openZones.Count > 0 && !openZones.Contains(zone, StringComparer.OrdinalIgnoreCase))
+
+            if (!factoryBotZone && openZones.Count > 0
+                && !openZones.Contains(zone, StringComparer.OrdinalIgnoreCase))
             {
-                AllBossesEverywhereMod.Logger?.Warning($"[All Bosses Everywhere] {map}/{role}: zone '{zone}' absente de OpenZones; elle est ignorée.");
+                AllBossesEverywhereMod.Logger?.Warning(
+                    $"[All Bosses Everywhere] {map}/{role}: zone '{zone}' absente de OpenZones; elle est ignorée."
+                );
                 continue;
             }
+
             result.Add(zone);
         }
+
         return result;
     }
 
@@ -293,30 +379,54 @@ public sealed class ModConfig
     public bool Enabled { get; set; } = true;
     public bool EnableLabs { get; set; } = false;
     public bool DebugLogging { get; set; } = true;
+
+    // 0 désactive les ajouts. 1 reste le réglage prudent recommandé.
     public int MaximumAdditionalBossesPerRaid { get; set; } = 1;
+
     public List<string> ExcludedZoneNameFragments { get; set; } = new();
-    public Dictionary<string, MapConfig> Maps { get; set; } = new(StringComparer.OrdinalIgnoreCase);
-    public Dictionary<string, Dictionary<string, List<string>>> BossZoneOverrides { get; set; } = new(StringComparer.OrdinalIgnoreCase);
+
+    // Matrice complète et lisible: carte -> boss -> chance.
+    public Dictionary<string, MapConfig> Maps { get; set; }
+        = new(StringComparer.OrdinalIgnoreCase);
+
+    // Zones spécifiques: carte -> boss -> liste de zones.
+    public Dictionary<string, Dictionary<string, List<string>>> BossZoneOverrides { get; set; }
+        = new(StringComparer.OrdinalIgnoreCase);
+
     public List<BossConfig> Bosses { get; set; } = new();
 
     public double GetEffectiveChance(string map, BossConfig boss)
     {
         if (!Maps.TryGetValue(map, out var mapConfig) || !mapConfig.Enabled)
             return 0;
-        return mapConfig.Bosses.TryGetValue(boss.Role, out var value) ? Math.Clamp(value, 0, 100) : 0;
+
+        return mapConfig.Bosses.TryGetValue(boss.Role, out var value)
+            ? Math.Clamp(value, 0, 100)
+            : 0;
     }
 
     public static ModConfig CreateDefault()
     {
-        var roles = new[] { "bossBully", "bossKilla", "bossTagilla", "bossKojaniy", "bossSanitar", "bossKolontay", "bossPartisan", "bossGluhar", "bossBoar", "bossKnight" };
-        var maps = new Dictionary<string, MapConfig>(StringComparer.OrdinalIgnoreCase);
-        foreach (var map in new[] { "bigmap", "factory4_day", "factory4_night", "interchange", "lighthouse", "rezervbase", "sandbox", "sandbox_high", "shoreline", "tarkovstreets", "woods", "labyrinth" })
+        var roles = new[]
         {
-            maps[map] = new MapConfig
-            {
-                Enabled = true,
-                Bosses = roles.ToDictionary(role => role, role => role is "bossGluhar" or "bossBoar" or "bossKnight" ? 2.0 : 4.0, StringComparer.OrdinalIgnoreCase)
-            };
+            "bossBully", "bossKilla", "bossTagilla", "bossKojaniy", "bossSanitar",
+            "bossKolontay", "bossPartisan", "bossGluhar", "bossBoar", "bossKnight"
+        };
+
+        var maps = new Dictionary<string, MapConfig>(StringComparer.OrdinalIgnoreCase);
+        foreach (var map in new[]
+                 {
+                     "bigmap", "factory4_day", "factory4_night", "interchange", "lighthouse",
+                     "rezervbase", "sandbox", "sandbox_high", "shoreline", "tarkovstreets",
+                     "woods", "labyrinth"
+                 })
+        {
+            var chances = roles.ToDictionary(
+                role => role,
+                role => role is "bossGluhar" or "bossBoar" or "bossKnight" ? 2.0 : 4.0,
+                StringComparer.OrdinalIgnoreCase);
+
+            maps[map] = new MapConfig { Enabled = true, Bosses = chances };
         }
 
         return new ModConfig
@@ -327,13 +437,19 @@ public sealed class ModConfig
             MaximumAdditionalBossesPerRaid = 1,
             ExcludedZoneNameFragments = new() { "snip", "sniper", "marksman" },
             Maps = maps,
+            BossZoneOverrides = new(StringComparer.OrdinalIgnoreCase),
             Bosses = new()
             {
-                new("bossBully", "Reshala", "bigmap"), new("bossKilla", "Killa", "interchange"),
-                new("bossTagilla", "Tagilla", "factory4_day"), new("bossKojaniy", "Shturman", "woods"),
-                new("bossSanitar", "Sanitar", "shoreline"), new("bossKolontay", "Kollontay", "tarkovstreets"),
-                new("bossPartisan", "Partisan", "bigmap"), new("bossGluhar", "Glukhar", "rezervbase"),
-                new("bossBoar", "Kaban", "tarkovstreets"), new("bossKnight", "Goons", "lighthouse")
+                new("bossBully", "Reshala", "bigmap"),
+                new("bossKilla", "Killa", "interchange"),
+                new("bossTagilla", "Tagilla", "factory4_day"),
+                new("bossKojaniy", "Shturman", "woods"),
+                new("bossSanitar", "Sanitar", "shoreline"),
+                new("bossKolontay", "Kollontay", "tarkovstreets"),
+                new("bossPartisan", "Partisan", "bigmap"),
+                new("bossGluhar", "Glukhar", "rezervbase"),
+                new("bossBoar", "Kaban", "tarkovstreets"),
+                new("bossKnight", "Goons", "lighthouse")
             }
         };
     }
@@ -344,40 +460,66 @@ public sealed class ModConfig
         Maps ??= new(StringComparer.OrdinalIgnoreCase);
         BossZoneOverrides ??= new(StringComparer.OrdinalIgnoreCase);
         Bosses ??= new();
+
         MaximumAdditionalBossesPerRaid = Math.Clamp(MaximumAdditionalBossesPerRaid, 0, 20);
 
-        var validRoles = Bosses.Where(x => !string.IsNullOrWhiteSpace(x.Role)).Select(x => x.Role).ToHashSet(StringComparer.OrdinalIgnoreCase);
+        var validRoles = Bosses
+            .Where(x => !string.IsNullOrWhiteSpace(x.Role))
+            .Select(x => x.Role)
+            .ToHashSet(StringComparer.OrdinalIgnoreCase);
+
         foreach (var boss in Bosses)
+        {
             if (string.IsNullOrWhiteSpace(boss.Role) || string.IsNullOrWhiteSpace(boss.SourceMap))
                 logger.Warning("[All Bosses Everywhere] Entrée boss incomplète dans config.json.");
+        }
 
-        foreach (var mapEntry in Maps)
+        foreach (var mapKey in Maps.Keys.ToList())
         {
-            mapEntry.Value.Bosses ??= new(StringComparer.OrdinalIgnoreCase);
-            mapEntry.Value.GeneralZones ??= new();
-            mapEntry.Value.ExcludedZones ??= new();
-            foreach (var role in mapEntry.Value.Bosses.Keys.ToList())
+            Maps[mapKey] ??= new MapConfig();
+            var mapConfig = Maps[mapKey];
+            mapConfig.Bosses ??= new(StringComparer.OrdinalIgnoreCase);
+            mapConfig.GeneralZones ??= new();
+            mapConfig.ExcludedZones ??= new();
+
+            foreach (var role in mapConfig.Bosses.Keys.ToList())
             {
-                mapEntry.Value.Bosses[role] = Math.Clamp(mapEntry.Value.Bosses[role], 0, 100);
+                mapConfig.Bosses[role] = Math.Clamp(mapConfig.Bosses[role], 0, 100);
+
                 if (!validRoles.Contains(role))
-                    logger.Warning($"[All Bosses Everywhere] {mapEntry.Key}: boss inconnu '{role}' dans la matrice.");
+                {
+                    logger.Warning(
+                        $"[All Bosses Everywhere] {mapKey}: boss inconnu '{role}' dans la matrice."
+                    );
+                }
             }
         }
 
-        foreach (var mapEntry in BossZoneOverrides)
-            foreach (var roleEntry in mapEntry.Value)
+        foreach (var mapKey in BossZoneOverrides.Keys.ToList())
+        {
+            BossZoneOverrides[mapKey] ??= new(StringComparer.OrdinalIgnoreCase);
+            var roleZones = BossZoneOverrides[mapKey];
+
+            foreach (var role in roleZones.Keys.ToList())
             {
-                if (!validRoles.Contains(roleEntry.Key))
-                    logger.Warning($"[All Bosses Everywhere] {mapEntry.Key}: boss inconnu '{roleEntry.Key}' dans bossZoneOverrides.");
-                roleEntry.Value ??= new();
+                if (!validRoles.Contains(role))
+                {
+                    logger.Warning(
+                        $"[All Bosses Everywhere] {mapKey}: boss inconnu '{role}' dans bossZoneOverrides."
+                    );
+                }
+
+                roleZones[role] ??= new();
             }
+        }
     }
 }
 
 public sealed class MapConfig
 {
     public bool Enabled { get; set; } = true;
-    public Dictionary<string, double> Bosses { get; set; } = new(StringComparer.OrdinalIgnoreCase);
+    public Dictionary<string, double> Bosses { get; set; }
+        = new(StringComparer.OrdinalIgnoreCase);
     public List<string> GeneralZones { get; set; } = new();
     public List<string> ExcludedZones { get; set; } = new();
 }
@@ -385,7 +527,11 @@ public sealed class MapConfig
 public sealed class BossConfig
 {
     public BossConfig() { }
-    public BossConfig(string role, string displayName, string sourceMap)
+
+    public BossConfig(
+        string role,
+        string displayName,
+        string sourceMap)
     {
         Role = role;
         DisplayName = displayName;
