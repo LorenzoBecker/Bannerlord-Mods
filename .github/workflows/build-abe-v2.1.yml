@@ -1,0 +1,46 @@
+name: Build All Bosses Everywhere 2.1
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - build/all-bosses-everywhere-v2.1
+    paths:
+      - 'abe-v2.1/**'
+      - '.github/workflows/build-abe-v2.1.yml'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout build branch
+        uses: actions/checkout@v4
+
+      - name: Setup .NET 9
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '9.0.x'
+
+      - name: Checkout SPT 4.0.13 source
+        uses: actions/checkout@v4
+        with:
+          repository: sp-tarkov/server-csharp
+          ref: c87cc3c6853c622fd2addaf961f58467cd9754f2
+          path: spt
+
+      - name: Build mod
+        run: dotnet build abe-v2.1/AllBossesEverywhere.csproj -c Debug -o abe-v2.1/out
+
+      - name: Prepare artifact
+        run: |
+          mkdir -p artifact/SPT/user/mods/AllBossesEverywhere
+          cp abe-v2.1/out/AllBossesEverywhere.dll artifact/SPT/user/mods/AllBossesEverywhere/
+          cp abe-v2.1/config.json artifact/SPT/user/mods/AllBossesEverywhere/
+          cp abe-v2.1/README-FR.md artifact/SPT/user/mods/AllBossesEverywhere/
+          cp abe-v2.1/LICENSE artifact/SPT/user/mods/AllBossesEverywhere/
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: AllBossesEverywhere-2.1.0-SPT-4.0.13
+          path: artifact/
