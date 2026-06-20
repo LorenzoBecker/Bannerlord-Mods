@@ -35,9 +35,22 @@ jobs:
           path: spt
 
       - name: Build mod
-        run: dotnet build abe-v2.1/AllBossesEverywhere.csproj -c Debug -o abe-v2.1/out
+        id: build
+        continue-on-error: true
+        shell: bash
+        run: |
+          set -o pipefail
+          dotnet build abe-v2.1/AllBossesEverywhere.csproj -c Debug -o abe-v2.1/out 2>&1 | tee abe-v2.1/build.log
+
+      - name: Upload build log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ABE-2.1-build-log
+          path: abe-v2.1/build.log
 
       - name: Prepare artifact
+        if: steps.build.outcome == 'success'
         run: |
           mkdir -p artifact/SPT/user/mods/AllBossesEverywhere
           cp abe-v2.1/out/AllBossesEverywhere.dll artifact/SPT/user/mods/AllBossesEverywhere/
@@ -45,7 +58,12 @@ jobs:
           cp abe-v2.1/README-FR.md artifact/SPT/user/mods/AllBossesEverywhere/
 
       - name: Upload artifact
+        if: steps.build.outcome == 'success'
         uses: actions/upload-artifact@v4
         with:
           name: AllBossesEverywhere-2.1.0-SPT-4.0.13
           path: artifact/
+
+      - name: Fail workflow when compilation failed
+        if: steps.build.outcome != 'success'
+        run: exit 1
