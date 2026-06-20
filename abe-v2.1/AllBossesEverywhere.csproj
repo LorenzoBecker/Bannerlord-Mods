@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <AssemblyName>AllBossesEverywhere</AssemblyName>
+    <RootNamespace>AllBossesEverywhere</RootNamespace>
+    <Version>2.1.0</Version>
+    <CopyLocalLockFileAssemblies>false</CopyLocalLockFileAssemblies>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../spt/Libraries/SPTarkov.Server.Core/SPTarkov.Server.Core.csproj" Private="false" />
+    <ProjectReference Include="../spt/Libraries/SPTarkov.DI/SPTarkov.DI.csproj" Private="false" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="HarmonyX" Version="2.15.0" />
+    <PackageReference Include="SemanticVersioning" Version="3.0.0" />
+  </ItemGroup>
+</Project>
