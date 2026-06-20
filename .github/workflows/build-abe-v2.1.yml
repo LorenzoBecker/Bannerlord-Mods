@@ -8,6 +8,12 @@ on:
     paths:
       - 'abe-v2.1/**'
       - '.github/workflows/build-abe-v2.1.yml'
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'abe-v2.1/**'
+      - '.github/workflows/build-abe-v2.1.yml'
 
 jobs:
   build:
