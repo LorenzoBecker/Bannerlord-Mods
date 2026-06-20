@@ -34,6 +34,11 @@ jobs:
           ref: c87cc3c6853c622fd2addaf961f58467cd9754f2
           path: spt
 
+      - name: Disable SPT Ceciler post-build pass
+        shell: bash
+        run: |
+          sed -i 's/<Target Name="AfterEverythingDone"/<Target Condition="false" Name="AfterEverythingDone"/' spt/Libraries/SPTarkov.Server.Core/SPTarkov.Server.Core.csproj
+
       - name: Build mod
         id: build
         continue-on-error: true
