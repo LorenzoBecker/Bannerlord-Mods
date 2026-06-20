@@ -37,7 +37,6 @@ jobs:
           cp abe-v2.1/out/AllBossesEverywhere.dll artifact/SPT/user/mods/AllBossesEverywhere/
           cp abe-v2.1/config.json artifact/SPT/user/mods/AllBossesEverywhere/
           cp abe-v2.1/README-FR.md artifact/SPT/user/mods/AllBossesEverywhere/
-          cp abe-v2.1/LICENSE artifact/SPT/user/mods/AllBossesEverywhere/
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
