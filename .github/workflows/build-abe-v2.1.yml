@@ -1,0 +1,290 @@
+name: Build Bosses Extravaganza 1.0.1
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - build/all-bosses-everywhere-v2.1
+    paths:
+      - 'abe-v2.1/**'
+      - '.github/workflows/build-abe-v2.1.yml'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout build branch
+        uses: actions/checkout@v4
+
+      - name: Setup .NET 9
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '9.0.x'
+
+      - name: Checkout SPT 4.0.13 source
+        uses: actions/checkout@v4
+        with:
+          repository: sp-tarkov/server-csharp
+          ref: c87cc3c6853c622fd2addaf961f58467cd9754f2
+          path: spt
+
+      - name: Patch Bosses Extravaganza 1.0.1 source and config
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json
+          p = Path('abe-v2.1/AllBossesEverywhere.cs')
+          s = p.read_text(encoding='utf-8')
+          s = s.replace('com.lorenzobecker.allbosseseverywhere', 'com.lorenzobecker.bossesextravaganza')
+          s = s.replace('All Bosses Everywhere', 'Bosses Extravaganza')
+          s = s.replace('v2.1.0', 'v1.0.1')
+          s = s.replace('new("2.1.0")', 'new("1.0.1")')
+          s = s.replace('new Harmony("com.lorenzobecker.bossesextravaganza.v2.1")', 'new Harmony("com.lorenzobecker.bossesextravaganza.v1.0.1")')
+          s = s.replace('public override List<string>? Contributors { get; init; } = new() { "OpenAI" };', 'public override List<string>? Contributors { get; init; }')
+          s = s.replace('boss.SptId = $"abe_v2_1_{selected.Config.Role}_{Guid.NewGuid():N}";', 'boss.SptId = $"bossesextravaganza_1_0_1_{selected.Config.Role}_{Guid.NewGuid():N}";')
+          old_call = '''                var zones = BuildZonePool(__result.LocationLoot, map, selected.Config.Role, config);
+                if (zones.Count == 0)
+                {
+                    AllBossesEverywhereMod.Logger?.Warning(
+                        $"[Bosses Extravaganza] {map}: aucune zone valide pour {selected.Config.DisplayName}; candidat ignoré."
+                    );
+                    candidates.Remove(selected);
+                    slot--;
+                    continue;
+                }
+
+                var zone = zones[AllBossesEverywhereMod.Rng.Next(zones.Count)];
+'''
+          new_call = '''                var zones = BuildZonePool(__result.LocationLoot, map, selected.Config.Role, config);
+                if (zones.Count == 0)
+                {
+                    AllBossesEverywhereMod.Logger?.Warning(
+                        $"[Bosses Extravaganza] {map}: aucune zone compatible boss pour {selected.Config.DisplayName}; candidat ignore."
+                    );
+                    candidates.Remove(selected);
+                    slot--;
+                    continue;
+                }
+
+                var zone = zones[AllBossesEverywhereMod.Rng.Next(zones.Count)];
+                if (!EnsureBossSpawnPointSupport(__result.LocationLoot, map, zone, selected.Config.Role, config))
+                {
+                    AllBossesEverywhereMod.Logger?.Warning(
+                        $"[Bosses Extravaganza] {map}/{selected.Config.Role}: zone '{zone}' impossible a securiser; candidat ignore."
+                    );
+                    candidates.Remove(selected);
+                    slot--;
+                    continue;
+                }
+'''
+          s = s.replace(old_call, new_call)
+          start = s.index('    private static List<string> BuildZonePool(')
+          end = s.index('    private static string NormalizeMapId', start)
+          new_block = r'''    private const string BossCategory = "Boss";
+
+    private static List<string> BuildZonePool(LocationBase location, string map, string role, ModConfig config)
+    {
+        var openZones = (location.OpenZones ?? string.Empty)
+            .Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
+            .Distinct(StringComparer.OrdinalIgnoreCase)
+            .ToList();
+
+        List<string> rawZones;
+        if (config.BossZoneOverrides.TryGetValue(map, out var mapBossZones)
+            && mapBossZones.TryGetValue(role, out var specificZones)
+            && specificZones.Count > 0)
+        {
+            rawZones = ValidateExplicitZones(specificZones, openZones, map, role, config);
+        }
+        else if (config.Maps.TryGetValue(map, out var mapConfig) && mapConfig.GeneralZones.Count > 0)
+        {
+            rawZones = ValidateExplicitZones(mapConfig.GeneralZones, openZones, map, role, config);
+        }
+        else if (map is "factory4_day" or "factory4_night")
+        {
+            rawZones = new List<string> { "BotZone" };
+        }
+        else
+        {
+            var excludedZones = mapConfig?.ExcludedZones ?? new List<string>();
+            rawZones = openZones
+                .Where(x => !config.ExcludedZoneNameFragments.Any(fragment =>
+                    !string.IsNullOrWhiteSpace(fragment)
+                    && x.Contains(fragment, StringComparison.OrdinalIgnoreCase)))
+                .Where(x => !excludedZones.Contains(x, StringComparer.OrdinalIgnoreCase))
+                .ToList();
+        }
+
+        var safeZones = rawZones
+            .Where(zone => ZoneCanSupportBoss(location, zone, config))
+            .Distinct(StringComparer.OrdinalIgnoreCase)
+            .ToList();
+
+        if (config.DebugLogging && rawZones.Count != safeZones.Count)
+        {
+            var removed = rawZones.Except(safeZones, StringComparer.OrdinalIgnoreCase).ToList();
+            if (removed.Count > 0)
+                AllBossesEverywhereMod.Logger?.Info($"[Bosses Extravaganza] {map}/{role}: zones ignorees car sans spawnpoint compatible boss: {string.Join(", ", removed)}.");
+        }
+
+        return safeZones;
+    }
+
+    private static bool ZoneCanSupportBoss(LocationBase location, string zone, ModConfig config)
+    {
+        var points = GetZoneSpawnPoints(location, zone);
+        if (!config.ZoneSafety.RequireSpawnPointInZone) return true;
+        if (points.Count == 0) return false;
+        if (points.Any(HasBossCategory)) return true;
+        return config.ZoneSafety.PromoteBotSpawnPointsToBoss
+               && points.Any(point => HasAnyCategory(point, config.ZoneSafety.PromotionSourceCategories));
+    }
+
+    private static bool EnsureBossSpawnPointSupport(LocationBase location, string map, string zone, string role, ModConfig config)
+    {
+        var points = GetZoneSpawnPoints(location, zone);
+        if (!config.ZoneSafety.RequireSpawnPointInZone) return true;
+        if (points.Count == 0) return false;
+        if (points.Any(HasBossCategory)) return true;
+        if (!config.ZoneSafety.PromoteBotSpawnPointsToBoss) return false;
+
+        var promoted = 0;
+        foreach (var point in points.Where(point => HasAnyCategory(point, config.ZoneSafety.PromotionSourceCategories)))
+        {
+            var categories = (point.Categories ?? Array.Empty<string>()).Where(x => !string.IsNullOrWhiteSpace(x)).ToList();
+            if (categories.Contains(BossCategory, StringComparer.OrdinalIgnoreCase)) continue;
+            categories.Add(BossCategory);
+            point.Categories = categories.Distinct(StringComparer.OrdinalIgnoreCase).ToList();
+            promoted++;
+        }
+
+        if (promoted <= 0) return false;
+        AllBossesEverywhereMod.Logger?.Info($"[Bosses Extravaganza] {map}/{role}: zone '{zone}' securisee: {promoted} spawnpoint(s) Bot/BotPmc promu(s) en Boss.");
+        return true;
+    }
+
+    private static List<SpawnPointParam> GetZoneSpawnPoints(LocationBase location, string zone)
+    {
+        return (location.SpawnPointParams ?? Array.Empty<SpawnPointParam>())
+            .Where(point => string.Equals(point.BotZoneName, zone, StringComparison.OrdinalIgnoreCase))
+            .ToList();
+    }
+
+    private static bool HasBossCategory(SpawnPointParam point)
+    {
+        return (point.Categories ?? Array.Empty<string>()).Contains(BossCategory, StringComparer.OrdinalIgnoreCase);
+    }
+
+    private static bool HasAnyCategory(SpawnPointParam point, IEnumerable<string> wantedCategories)
+    {
+        var existing = (point.Categories ?? Array.Empty<string>()).Where(x => !string.IsNullOrWhiteSpace(x)).ToHashSet(StringComparer.OrdinalIgnoreCase);
+        return wantedCategories.Any(existing.Contains);
+    }
+
+    private static List<string> ValidateExplicitZones(
+        IEnumerable<string> requestedZones,
+        List<string> openZones,
+        string map,
+        string role,
+        ModConfig config)
+    {
+        var result = new List<string>();
+        foreach (var zone in requestedZones.Where(x => !string.IsNullOrWhiteSpace(x)).Distinct(StringComparer.OrdinalIgnoreCase))
+        {
+            var explicitlyExcluded = config.Maps.TryGetValue(map, out var mapConfig)
+                                     && mapConfig.ExcludedZones.Contains(zone, StringComparer.OrdinalIgnoreCase);
+            if (explicitlyExcluded)
+            {
+                AllBossesEverywhereMod.Logger?.Warning($"[Bosses Extravaganza] {map}/{role}: zone '{zone}' exclue par la configuration.");
+                continue;
+            }
+
+            var factoryBotZone = map is "factory4_day" or "factory4_night" && zone.Equals("BotZone", StringComparison.OrdinalIgnoreCase);
+            if (!factoryBotZone && openZones.Count > 0 && !openZones.Contains(zone, StringComparer.OrdinalIgnoreCase))
+            {
+                AllBossesEverywhereMod.Logger?.Warning($"[Bosses Extravaganza] {map}/{role}: zone '{zone}' absente de OpenZones; elle est ignoree.");
+                continue;
+            }
+            result.Add(zone);
+        }
+        return result;
+    }
+
+'''
+          s = s[:start] + new_block + s[end:]
+          s = s.replace('public List<string> ExcludedZoneNameFragments { get; set; } = new();\n\n    // Matrice complète', 'public List<string> ExcludedZoneNameFragments { get; set; } = new();\n    public ZoneSafetyConfig ZoneSafety { get; set; } = new();\n\n    // Matrice complète')
+          s = s.replace('BossZoneOverrides ??= new(StringComparer.OrdinalIgnoreCase);\n        Bosses ??= new();', 'BossZoneOverrides ??= new(StringComparer.OrdinalIgnoreCase);\n        ZoneSafety ??= new();\n        ZoneSafety.Normalize();\n        Bosses ??= new();')
+          marker = 'public sealed class MapConfig\n{'
+          zone_class = '''public sealed class ZoneSafetyConfig
+{
+    public bool RequireSpawnPointInZone { get; set; } = true;
+    public bool PromoteBotSpawnPointsToBoss { get; set; } = true;
+    public List<string> PromotionSourceCategories { get; set; } = new() { "Bot", "BotPmc" };
+
+    public void Normalize()
+    {
+        PromotionSourceCategories ??= new() { "Bot", "BotPmc" };
+        PromotionSourceCategories = PromotionSourceCategories
+            .Where(x => !string.IsNullOrWhiteSpace(x))
+            .Distinct(StringComparer.OrdinalIgnoreCase)
+            .ToList();
+        if (PromotionSourceCategories.Count == 0) PromotionSourceCategories.Add("Bot");
+    }
+}
+
+'''
+          s = s.replace(marker, zone_class + marker)
+          p.write_text(s, encoding='utf-8')
+
+          cp = Path('abe-v2.1/config.json')
+          data = json.loads(cp.read_text(encoding='utf-8'))
+          data['zoneSafety'] = {
+            'requireSpawnPointInZone': True,
+            'promoteBotSpawnPointsToBoss': True,
+            'promotionSourceCategories': ['Bot', 'BotPmc']
+          }
+          for m in ['bigmap', 'woods', 'shoreline', 'lighthouse']:
+            data['maps'][m]['bosses']['bossPartisan'] = 0
+          cp.write_text(json.dumps(data, indent=2, ensure_ascii=False), encoding='utf-8')
+          PY
+
+      - name: Disable SPT Ceciler post-build pass
+        shell: bash
+        run: |
+          sed -i 's/<Target Name="AfterEverythingDone"/<Target Condition="false" Name="AfterEverythingDone"/' spt/Libraries/SPTarkov.Server.Core/SPTarkov.Server.Core.csproj
+
+      - name: Build mod
+        id: build
+        continue-on-error: true
+        shell: bash
+        run: |
+          set -o pipefail
+          dotnet build abe-v2.1/AllBossesEverywhere.csproj -c Debug -o abe-v2.1/out 2>&1 | tee abe-v2.1/build.log
+
+      - name: Upload build log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: BossesExtravaganza-1.0.1-build-log
+          path: abe-v2.1/build.log
+
+      - name: Prepare artifact
+        if: steps.build.outcome == 'success'
+        run: |
+          mkdir -p artifact/BossesExtravaganza
+          cp abe-v2.1/out/BossesExtravaganza.dll artifact/BossesExtravaganza/
+          cp abe-v2.1/config.json artifact/BossesExtravaganza/
+          cp abe-v2.1/README-FR.md artifact/BossesExtravaganza/README-FR.md
+          cp abe-v2.1/AllBossesEverywhere.cs artifact/BossesExtravaganza/Source.cs
+
+      - name: Upload artifact
+        if: steps.build.outcome == 'success'
+        uses: actions/upload-artifact@v4
+        with:
+          name: BossesExtravaganza-1.0.1-SPT-4.0.13
+          path: artifact/
+
+      - name: Fail workflow when compilation failed
+        if: steps.build.outcome != 'success'
+        run: exit 1
