@@ -34,13 +34,22 @@ jobs:
           ref: c87cc3c6853c622fd2addaf961f58467cd9754f2
           path: spt
 
-      - name: Patch release metadata
+      - name: Patch release metadata and defaults
         shell: bash
         run: |
           sed -i 's/com.lorenzobecker.allbosseseverywhere/com.lorenzobecker.bossesextravaganza/g' abe-v2.1/AllBossesEverywhere.cs
           sed -i 's/All Bosses Everywhere/Bosses Extravaganza/g' abe-v2.1/AllBossesEverywhere.cs
           sed -i 's/v2\.1\.0/v1.0.0/g' abe-v2.1/AllBossesEverywhere.cs
           sed -i 's/new("2\.1\.0")/new("1.0.0")/g' abe-v2.1/AllBossesEverywhere.cs
+          sed -i 's/All Bosses Everywhere/Bosses Extravaganza/g' abe-v2.1/README-FR.md
+          python - <<'PY'
+          import json
+          p = 'abe-v2.1/config.json'
+          data = json.load(open(p, encoding='utf-8'))
+          for m in ['bigmap', 'woods', 'shoreline', 'lighthouse']:
+              data['maps'][m]['bosses']['bossPartisan'] = 0
+          json.dump(data, open(p, 'w', encoding='utf-8'), indent=2, ensure_ascii=False)
+          PY
 
       - name: Disable SPT Ceciler post-build pass
         shell: bash
