@@ -1,0 +1,36 @@
+name: BST temporary .NET SDK export
+
+on:
+  push:
+    branches:
+      - bst-0.0.10-cloud-build
+  workflow_dispatch:
+
+jobs:
+  export-sdk:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup .NET 8
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+      - name: Inspect SDK
+        run: |
+          dotnet --info
+          du -sh /usr/share/dotnet
+      - name: Archive SDK
+        run: |
+          sudo tar -C /usr/share -czf "$RUNNER_TEMP/dotnet-sdk-linux-x64.tar.gz" dotnet
+          sha256sum "$RUNNER_TEMP/dotnet-sdk-linux-x64.tar.gz" > "$RUNNER_TEMP/dotnet-sdk-linux-x64.tar.gz.sha256"
+          ls -lh "$RUNNER_TEMP/dotnet-sdk-linux-x64.tar.gz"
+      - name: Upload SDK artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: bst-dotnet-sdk-linux-x64
+          path: |
+            ${{ runner.temp }}/dotnet-sdk-linux-x64.tar.gz
+            ${{ runner.temp }}/dotnet-sdk-linux-x64.tar.gz.sha256
+          retention-days: 1
+          compression-level: 0
