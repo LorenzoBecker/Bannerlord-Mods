@@ -23,17 +23,19 @@ jobs:
         run: |
           dotnet --info
           du -sh /usr/share/dotnet
-      - name: Archive SDK
+      - name: Archive SDK quickly
         run: |
-          sudo tar -C /usr/share -czf "$RUNNER_TEMP/dotnet-sdk-linux-x64.tar.gz" dotnet
-          sha256sum "$RUNNER_TEMP/dotnet-sdk-linux-x64.tar.gz" > "$RUNNER_TEMP/dotnet-sdk-linux-x64.tar.gz.sha256"
-          ls -lh "$RUNNER_TEMP/dotnet-sdk-linux-x64.tar.gz"
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq zstd
+          sudo tar -C /usr/share --use-compress-program='zstd -T0 -3' -cf "$RUNNER_TEMP/dotnet-sdk-linux-x64.tar.zst" dotnet
+          sha256sum "$RUNNER_TEMP/dotnet-sdk-linux-x64.tar.zst" > "$RUNNER_TEMP/dotnet-sdk-linux-x64.tar.zst.sha256"
+          ls -lh "$RUNNER_TEMP/dotnet-sdk-linux-x64.tar.zst"
       - name: Upload SDK artifact
         uses: actions/upload-artifact@v4
         with:
-          name: bst-dotnet-sdk-linux-x64
+          name: bst-dotnet-sdk-linux-x64-zstd
           path: |
-            ${{ runner.temp }}/dotnet-sdk-linux-x64.tar.gz
-            ${{ runner.temp }}/dotnet-sdk-linux-x64.tar.gz.sha256
+            ${{ runner.temp }}/dotnet-sdk-linux-x64.tar.zst
+            ${{ runner.temp }}/dotnet-sdk-linux-x64.tar.zst.sha256
           retention-days: 1
           compression-level: 0
