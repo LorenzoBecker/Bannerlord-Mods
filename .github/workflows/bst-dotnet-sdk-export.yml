@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - bst-0.0.10-cloud-build
+  pull_request:
+    branches:
+      - main
   workflow_dispatch:
 
 jobs:
