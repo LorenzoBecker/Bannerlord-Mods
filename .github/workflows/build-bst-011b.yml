@@ -1,0 +1,72 @@
+name: Build Bannerlord Skill Tree 0.0.11-B
+
+on:
+  push:
+    branches:
+      - build/bannerlord-skill-tree-0.0.11b
+    paths:
+      - 'bst-ci-011b/**'
+      - '.github/workflows/build-bst-011b.yml'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET SDK
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Extract source payload
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Force -Path buildsrc | Out-Null
+          Expand-Archive -LiteralPath 'bst-ci-011b/source.zip' -DestinationPath buildsrc -Force
+
+      - name: Restore
+        shell: pwsh
+        run: |
+          dotnet restore 'buildsrc/BannerlordSkillTree/BannerlordSkillTree.CI.csproj' --nologo
+
+      - name: Build
+        id: compile
+        continue-on-error: true
+        shell: pwsh
+        run: |
+          dotnet build 'buildsrc/BannerlordSkillTree/BannerlordSkillTree.CI.csproj' -c Release --no-restore --nologo 2>&1 | Tee-Object -FilePath build-011b.log
+
+      - name: Prepare artifact
+        if: steps.compile.outcome == 'success'
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Force -Path artifact/BannerlordSkillTree/bin/Win64_Shipping_Client | Out-Null
+          Copy-Item 'buildsrc/BannerlordSkillTree/bin/Win64_Shipping_Client/BannerlordSkillTree.dll' 'artifact/BannerlordSkillTree/bin/Win64_Shipping_Client/'
+          Copy-Item 'buildsrc/BannerlordSkillTree/SubModule.xml' 'artifact/BannerlordSkillTree/'
+          Copy-Item 'buildsrc/BannerlordSkillTree/GUI' 'artifact/BannerlordSkillTree/GUI' -Recurse
+          Copy-Item 'buildsrc/BannerlordSkillTree/ModuleData' 'artifact/BannerlordSkillTree/ModuleData' -Recurse
+          Copy-Item 'build-011b.log' 'artifact/build-011b.log'
+
+      - name: Upload build output
+        if: steps.compile.outcome == 'success'
+        uses: actions/upload-artifact@v4
+        with:
+          name: BannerlordSkillTree-0.0.11-B-build
+          path: artifact/
+          if-no-files-found: error
+
+      - name: Upload failed build log
+        if: steps.compile.outcome != 'success'
+        uses: actions/upload-artifact@v4
+        with:
+          name: BannerlordSkillTree-0.0.11-B-build-failure
+          path: build-011b.log
+          if-no-files-found: warn
+
+      - name: Fail workflow if compilation failed
+        if: steps.compile.outcome != 'success'
+        shell: pwsh
+        run: exit 1
